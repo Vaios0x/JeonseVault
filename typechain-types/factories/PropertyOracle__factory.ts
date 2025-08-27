@@ -1,4 +1,4 @@
-import type { PropertyOracle } from '../contracts/PropertyOracle';
+import type { PropertyOracle } from '../PropertyOracle';
 
 export class PropertyOracle__factory {
   static abi = [

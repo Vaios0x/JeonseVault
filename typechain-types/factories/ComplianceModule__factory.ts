@@ -1,4 +1,4 @@
-import type { ComplianceModule } from '../contracts/ComplianceModule';
+import type { ComplianceModule } from '../ComplianceModule';
 
 export class ComplianceModule__factory {
   static abi = [

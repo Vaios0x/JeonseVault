@@ -1,4 +1,4 @@
-import type { InvestmentPool } from '../contracts/InvestmentPool';
+import type { InvestmentPool } from '../InvestmentPool';
 
 export class InvestmentPool__factory {
   static abi = [

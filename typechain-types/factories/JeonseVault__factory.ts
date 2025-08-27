@@ -1,4 +1,4 @@
-import type { JeonseVault } from '../contracts/JeonseVault';
+import type { JeonseVault } from '../JeonseVault';
 
 export class JeonseVault__factory {
   static abi = [

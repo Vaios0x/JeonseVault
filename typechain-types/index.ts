@@ -1,9 +1,9 @@
 // TypeChain types for JeonseVault contracts
-// Export contract interfaces directly
-export * from './contracts/JeonseVault';
-export * from './contracts/InvestmentPool';
-export * from './contracts/ComplianceModule';
-export * from './contracts/PropertyOracle';
+// Export contract interfaces directly from root files
+export * from './JeonseVault';
+export * from './InvestmentPool';
+export * from './ComplianceModule';
+export * from './PropertyOracle';
 
 // Export factories
 export * from './factories';
