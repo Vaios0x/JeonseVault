@@ -349,11 +349,6 @@ npm run security:audit       # 보안 감사
 ### 📞 지원 채널
 - **Telegram**: [@Vai0sx](https://t.me/Vai0sx)
 
-### 👥 개발팀
-- **DevOps 리드**: devops@jeonsevault.com
-- **보안팀**: security@jeonsevault.com
-- **블록체인팀**: blockchain@jeonsevault.com
-
 ---
 
 ## 📄 라이선스
