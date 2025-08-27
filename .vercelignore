@@ -1,4 +1,4 @@
-# Archivos de testing (solo archivos de test, no componentes)
+# Archivos de testing
 __tests__/
 test/
 tests/
@@ -32,7 +32,7 @@ docker-compose.*.yml
 # Archivos de monitoreo
 monitoring/
 
-# Archivos de scripts (excepto scripts de build)
+# Archivos de scripts (excepto los necesarios)
 scripts/
 !scripts/vercel-build.js
 !scripts/generate-typechain.js

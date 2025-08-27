@@ -92,6 +92,7 @@ const nextConfig = {
   // Configuración de TypeScript
   typescript: {
     ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.vercel.json',
   },
 
   // Configuración de ESLint
