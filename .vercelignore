@@ -33,9 +33,9 @@ docker-compose.*.yml
 # Archivos de monitoreo
 monitoring/
 
-# Archivos de scripts (excepto vercel-build.sh)
+# Archivos de scripts (excepto vercel-build.js)
 scripts/
-!scripts/vercel-build.sh
+!scripts/vercel-build.js
 
 # Archivos de cache y logs
 .cache/

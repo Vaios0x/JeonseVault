@@ -5,6 +5,7 @@ const nextConfig = {
   env: {
     _next_intl_trailing_slash: 'false'
   },
+  
   // Configuración experimental para optimizaciones avanzadas
   experimental: {
     // Optimizaciones de bundle
@@ -63,17 +64,6 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     })
 
-    // Optimizaciones para imágenes
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|webp)$/i,
-      type: 'asset',
-      parser: {
-        dataUrlCondition: {
-          maxSize: 8 * 1024, // 8KB
-        },
-      },
-    })
-
     return config
   },
 
@@ -99,58 +89,6 @@ const nextConfig = {
   // Configuración de compresión
   compress: true,
 
-  // Configuración de headers para caching
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-      {
-        source: '/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ]
-  },
-
-  // Configuración de redirecciones
-  async redirects() {
-    return [
-      {
-        source: '/home',
-        destination: '/',
-        permanent: true,
-      },
-    ]
-  },
-
   // Configuración de TypeScript
   typescript: {
     ignoreBuildErrors: false,
@@ -160,9 +98,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-
-  // Configuración de output
-  output: 'standalone',
 
   // Configuración de trailing slash
   trailingSlash: false,
@@ -192,27 +127,6 @@ const nextConfig = {
     'zod',
     'react-hot-toast'
   ],
-
-  // Configuración de basePath
-  basePath: '',
-
-  // Configuración de assetPrefix
-  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
-
-  // Configuración de distDir
-  distDir: '.next',
-
-  // Configuración de generateEtags
-  generateEtags: true,
-
-  // Configuración de onDemandEntries
-  onDemandEntries: {
-    maxInactiveAge: 25 * 1000,
-    pagesBufferLength: 2,
-  },
-
-  // Configuración de pageExtensions
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
 }
 
 module.exports = withNextIntl(nextConfig)
