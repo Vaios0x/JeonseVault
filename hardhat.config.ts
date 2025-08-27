@@ -40,7 +40,7 @@ const config: HardhatUserConfig = {
     kairos: {
       url: "https://public-en-kairos.node.kaia.io",
       chainId: 1001,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      accounts: process.env.PRIVATE_KEY && process.env.PRIVATE_KEY.length >= 64 ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 25000000000, // 25 Gwei
       gas: 12000000,
       blockGasLimit: 12000000,
