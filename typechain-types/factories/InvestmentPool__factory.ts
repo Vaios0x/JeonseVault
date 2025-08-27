@@ -1,6 +1,41 @@
 import type { InvestmentPool } from '../contracts/InvestmentPool';
 
 export class InvestmentPool__factory {
+  static abi = [
+    {
+      "inputs": [],
+      "name": "getTotalPoolStats",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserInvestments",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
   static connect(address: string): InvestmentPool {
     // Mock implementation for build purposes
     return {

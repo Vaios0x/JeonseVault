@@ -1,6 +1,54 @@
 import type { ComplianceModule } from '../contracts/ComplianceModule';
 
 export class ComplianceModule__factory {
+  static abi = [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "verifyCompliance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "rule",
+          "type": "string"
+        }
+      ],
+      "name": "addComplianceRule",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "ruleId",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeComplianceRule",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ];
+
   static connect(address: string): ComplianceModule {
     // Mock implementation for build purposes
     return {

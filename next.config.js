@@ -58,6 +58,12 @@ const nextConfig = {
       tls: false,
     };
 
+    // Asegurar que typechain-types se incluya en el build
+    config.module.rules.push({
+      test: /typechain-types/,
+      type: 'javascript/auto',
+    });
+
     // Optimizaciones para SVG
     config.module.rules.push({
       test: /\.svg$/,

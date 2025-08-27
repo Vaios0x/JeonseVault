@@ -1,6 +1,65 @@
 import type { PropertyOracle } from '../contracts/PropertyOracle';
 
 export class PropertyOracle__factory {
+  static abi = [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "propertyId",
+          "type": "string"
+        }
+      ],
+      "name": "getPropertyValue",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "propertyId",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "updatePropertyValue",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "propertyId",
+          "type": "string"
+        }
+      ],
+      "name": "verifyProperty",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
   static connect(address: string): PropertyOracle {
     // Mock implementation for build purposes
     return {
