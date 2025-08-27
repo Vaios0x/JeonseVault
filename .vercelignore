@@ -1,4 +1,4 @@
-# Archivos de testing
+# Archivos de testing (solo archivos de test, no componentes)
 __tests__/
 test/
 tests/
@@ -9,7 +9,7 @@ tests/
 coverage/
 .nyc_output/
 
-# Archivos de Hardhat
+# Archivos de Hardhat (solo archivos de blockchain)
 contracts/
 artifacts/
 cache/
@@ -62,3 +62,11 @@ performance-reports/
 
 # Archivos de seguridad
 security-audit-*.json
+
+# Archivos de node_modules (ya manejado por Vercel)
+node_modules/
+
+# Archivos de build locales
+.next/
+dist/
+build/

@@ -1,11 +1,9 @@
 #!/bin/bash
 
 # Script de build optimizado para Vercel
-# Maneja conflictos de dependencias y optimiza el proceso de build
-
 set -e
 
-echo "🚀 Iniciando build optimizado para Vercel..."
+echo "🚀 Iniciando build de Vercel..."
 
 # Limpiar cache de npm si existe
 if [ -d "node_modules/.cache" ]; then
@@ -15,19 +13,26 @@ fi
 
 # Instalar dependencias con legacy peer deps
 echo "📦 Instalando dependencias..."
-npm install --legacy-peer-deps --production=false
+npm ci --legacy-peer-deps --prefer-offline --no-audit
 
-# Verificar que las dependencias críticas estén instaladas
-echo "🔍 Verificando dependencias críticas..."
-if [ ! -d "node_modules/next" ]; then
-    echo "❌ Error: Next.js no está instalado"
-    exit 1
-fi
+# Verificar que los archivos críticos existen
+echo "🔍 Verificando archivos críticos..."
+required_files=(
+    "components/ui/Button.tsx"
+    "hooks/useWeb3.ts"
+    "components/dashboard/DepositCard.tsx"
+    "components/dashboard/StatsWidget.tsx"
+    "components/ui/Loading.tsx"
+)
 
-if [ ! -d "node_modules/react" ]; then
-    echo "❌ Error: React no está instalado"
-    exit 1
-fi
+for file in "${required_files[@]}"; do
+    if [ ! -f "$file" ]; then
+        echo "❌ Error: Archivo requerido no encontrado: $file"
+        exit 1
+    fi
+done
+
+echo "✅ Todos los archivos críticos encontrados"
 
 # Ejecutar build de Next.js
 echo "🏗️ Ejecutando build de Next.js..."

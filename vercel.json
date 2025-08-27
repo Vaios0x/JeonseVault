@@ -13,5 +13,7 @@
     "env": {
       "NODE_ENV": "production"
     }
-  }
+  },
+  "installCommand": "npm ci --legacy-peer-deps",
+  "outputDirectory": ".next"
 }
