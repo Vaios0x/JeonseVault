@@ -1,0 +1,168 @@
+[1mdiff --git a/.vercelignore b/.vercelignore[m
+[1mindex f408fd7..ff054c8 100644[m
+[1m--- a/.vercelignore[m
+[1m+++ b/.vercelignore[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-# Archivos de testing[m
+[32m+[m[32m# Archivos de testing (solo archivos de test, no componentes)[m
+ __tests__/[m
+ test/[m
+ tests/[m
+[36m@@ -9,7 +9,7 @@[m [mtests/[m
+ coverage/[m
+ .nyc_output/[m
+ [m
+[31m-# Archivos de Hardhat[m
+[32m+[m[32m# Archivos de Hardhat (solo archivos de blockchain)[m
+ contracts/[m
+ artifacts/[m
+ cache/[m
+[36m@@ -62,3 +62,11 @@[m [mperformance-reports/[m
+ [m
+ # Archivos de seguridad[m
+ security-audit-*.json[m
+[32m+[m
+[32m+[m[32m# Archivos de node_modules (ya manejado por Vercel)[m
+[32m+[m[32mnode_modules/[m
+[32m+[m
+[32m+[m[32m# Archivos de build locales[m
+[32m+[m[32m.next/[m
+[32m+[m[32mdist/[m
+[32m+[m[32mbuild/[m
+[1mdiff --git a/next.config.js b/next.config.js[m
+[1mindex 200e210..5596b30 100644[m
+[1m--- a/next.config.js[m
+[1m+++ b/next.config.js[m
+[36m@@ -2,6 +2,9 @@[m [mconst withNextIntl = require('next-intl/plugin')('./i18n.ts')[m
+ [m
+ /** @type {import('next').NextConfig} */[m
+ const nextConfig = {[m
+[32m+[m[32m  env: {[m
+[32m+[m[32m    _next_intl_trailing_slash: 'false'[m
+[32m+[m[32m  },[m
+   // Configuración experimental para optimizaciones avanzadas[m
+   experimental: {[m
+     // Optimizaciones de bundle[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 5c2e6ce..26be9a3 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -6,7 +6,7 @@[m
+   "scripts": {[m
+     "dev": "next dev",[m
+     "build": "next build",[m
+[31m-    "build:vercel": "npm install --legacy-peer-deps && npm run build",[m
+[32m+[m[32m    "build:vercel": "bash scripts/vercel-build.sh",[m
+     "start": "next start",[m
+     "lint": "next lint",[m
+     "type-check": "tsc --noEmit",[m
+[1mdiff --git a/scripts/vercel-build.sh b/scripts/vercel-build.sh[m
+[1mindex e54fdda..d48b0c1 100644[m
+[1m--- a/scripts/vercel-build.sh[m
+[1m+++ b/scripts/vercel-build.sh[m
+[36m@@ -1,11 +1,9 @@[m
+ #!/bin/bash[m
+ [m
+ # Script de build optimizado para Vercel[m
+[31m-# Maneja conflictos de dependencias y optimiza el proceso de build[m
+[31m-[m
+ set -e[m
+ [m
+[31m-echo "🚀 Iniciando build optimizado para Vercel..."[m
+[32m+[m[32mecho "🚀 Iniciando build de Vercel..."[m
+ [m
+ # Limpiar cache de npm si existe[m
+ if [ -d "node_modules/.cache" ]; then[m
+[36m@@ -15,19 +13,26 @@[m [mfi[m
+ [m
+ # Instalar dependencias con legacy peer deps[m
+ echo "📦 Instalando dependencias..."[m
+[31m-npm install --legacy-peer-deps --production=false[m
+[31m-[m
+[31m-# Verificar que las dependencias críticas estén instaladas[m
+[31m-echo "🔍 Verificando dependencias críticas..."[m
+[31m-if [ ! -d "node_modules/next" ]; then[m
+[31m-    echo "❌ Error: Next.js no está instalado"[m
+[31m-    exit 1[m
+[31m-fi[m
+[31m-[m
+[31m-if [ ! -d "node_modules/react" ]; then[m
+[31m-    echo "❌ Error: React no está instalado"[m
+[31m-    exit 1[m
+[31m-fi[m
+[32m+[m[32mnpm ci --legacy-peer-deps --prefer-offline --no-audit[m
+[32m+[m
+[32m+[m[32m# Verificar que los archivos críticos existen[m
+[32m+[m[32mecho "🔍 Verificando archivos críticos..."[m
+[32m+[m[32mrequired_files=([m
+[32m+[m[32m    "components/ui/Button.tsx"[m
+[32m+[m[32m    "hooks/useWeb3.ts"[m
+[32m+[m[32m    "components/dashboard/DepositCard.tsx"[m
+[32m+[m[32m    "components/dashboard/StatsWidget.tsx"[m
+[32m+[m[32m    "components/ui/Loading.tsx"[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32mfor file in "${required_files[@]}"; do[m
+[32m+[m[32m    if [ ! -f "$file" ]; then[m
+[32m+[m[32m        echo "❌ Error: Archivo requerido no encontrado: $file"[m
+[32m+[m[32m        exit 1[m
+[32m+[m[32m    fi[m
+[32m+[m[32mdone[m
+[32m+[m
+[32m+[m[32mecho "✅ Todos los archivos críticos encontrados"[m
+ [m
+ # Ejecutar build de Next.js[m
+ echo "🏗️ Ejecutando build de Next.js..."[m
+[1mdiff --git a/vercel.env b/vercel.env[m
+[1mnew file mode 100644[m
+[1mindex 0000000..336f19a[m
+[1m--- /dev/null[m
+[1m+++ b/vercel.env[m
+[36m@@ -0,0 +1,34 @@[m
+[32m+[m[32m# Configuración de entorno para Vercel[m
+[32m+[m[32mNODE_ENV=production[m
+[32m+[m[32mNEXT_PUBLIC_ENVIRONMENT=production[m
+[32m+[m
+[32m+[m[32m# Configuración de la aplicación[m
+[32m+[m[32mNEXT_PUBLIC_APP_NAME=JeonseVault[m
+[32m+[m[32mNEXT_PUBLIC_APP_DESCRIPTION=혁신적인 전세 보증금 스마트 컨트랙트 플랫폼[m
+[32m+[m[32mNEXT_PUBLIC_SUPPORT_EMAIL=support@jeonsevault.com[m
+[32m+[m
+[32m+[m[32m# Configuración Web3 (usar valores por defecto para desarrollo)[m
+[32m+[m[32mNEXT_PUBLIC_ETHEREUM_RPC_URL=https://ethereum.publicnode.com[m
+[32m+[m[32mNEXT_PUBLIC_ETHEREUM_CHAIN_ID=1[m
+[32m+[m[32mNEXT_PUBLIC_ETHEREUM_EXPLORER_URL=https://etherscan.io[m
+[32m+[m
+[32m+[m[32m# Direcciones de contratos (usar valores de ejemplo para desarrollo)[m
+[32m+[m[32mNEXT_PUBLIC_JEONSE_VAULT_ADDRESS=0x6287ac251C19bFDfc7AE8247D64B952727855Dae[m
+[32m+[m[32mNEXT_PUBLIC_INVESTMENT_POOL_ADDRESS=0xe9B843Bd787B433015e77F1Ad00eF0ad8dF056bB[m
+[32m+[m[32mNEXT_PUBLIC_PROPERTY_ORACLE_ADDRESS=0xF38701CCCE9190D1445c8cB3561104e811CB1468[m
+[32m+[m[32mNEXT_PUBLIC_COMPLIANCE_MODULE_ADDRESS=0xf18Fa2873244423cb2247C2b64B5992418001702[m
+[32m+[m
+[32m+[m[32m# Configuración de internacionalización[m
+[32m+[m[32mNEXT_PUBLIC_DEFAULT_LOCALE=ko[m
+[32m+[m[32mNEXT_PUBLIC_SUPPORTED_LOCALES=ko,en[m
+[32m+[m[32mNEXT_PUBLIC_FALLBACK_LOCALE=en[m
+[32m+[m
+[32m+[m[32m# Configuración de optimización[m
+[32m+[m[32mNEXT_PUBLIC_ENABLE_ANALYTICS=false[m
+[32m+[m[32mNEXT_PUBLIC_ENABLE_PWA=true[m
+[32m+[m[32mNEXT_PUBLIC_ENABLE_OFFLINE=true[m
+[32m+[m
+[32m+[m[32m# Configuración de cache[m
+[32m+[m[32mCACHE_TTL=3600[m
+[32m+[m[32mCACHE_MAX_SIZE=1000[m
+[32m+[m[32mCACHE_STRATEGY=memory[m
+[1mdiff --git a/vercel.json b/vercel.json[m
+[1mindex ba81d6f..ce6c84c 100644[m
+[1m--- a/vercel.json[m
+[1m+++ b/vercel.json[m
+[36m@@ -13,5 +13,7 @@[m
+     "env": {[m
+       "NODE_ENV": "production"[m
+     }[m
+[31m-  }[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "installCommand": "npm ci --legacy-peer-deps",[m
+[32m+[m[32m  "outputDirectory": ".next"[m
+ }[m
