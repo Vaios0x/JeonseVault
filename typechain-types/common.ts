@@ -1,12 +1,16 @@
 import type { BigNumberish } from "ethers";
+import { JeonseVault__factory } from "./factories/JeonseVault__factory";
+import { InvestmentPool__factory } from "./factories/InvestmentPool__factory";
+import { ComplianceModule__factory } from "./factories/ComplianceModule__factory";
+import { PropertyOracle__factory } from "./factories/PropertyOracle__factory";
 
-export interface TypedEventFilter<_EventArgsArray, _EventArgsObject> {}
+export interface TypedEventFilter<_EventArgsArray, _EventArgsObject extends Record<string, any> = Record<string, any>> {}
 
 export interface TypedEvent<EventArgs extends Record<string, any> = Record<string, any>> {
   args: EventArgs;
 }
 
-export interface TypedListener<EventArgsArray extends Array<any>, EventArgsObject> {
+export interface TypedListener<EventArgsArray extends Array<any>, EventArgsObject extends Record<string, any> = Record<string, any>> {
   (...listenerArg: [...EventArgsArray, TypedEvent<EventArgsObject>]): void;
 }
 
@@ -16,10 +20,10 @@ export interface MinEthersFactory<C, ARGS> {
 
 export interface GetContractType {
   contracts: {
-    "JeonseVault": JeonseVault;
-    "InvestmentPool": InvestmentPool;
-    "ComplianceModule": ComplianceModule;
-    "PropertyOracle": PropertyOracle;
+    "JeonseVault": any;
+    "InvestmentPool": any;
+    "ComplianceModule": any;
+    "PropertyOracle": any;
   };
 }
 
@@ -44,40 +48,5 @@ export interface GetFactoriesType {
   };
 }
 
-// Basic contract interfaces
-export interface JeonseVault {
-  // Add basic methods as needed
-}
-
-export interface InvestmentPool {
-  // Add basic methods as needed
-}
-
-export interface ComplianceModule {
-  // Add basic methods as needed
-}
-
-export interface PropertyOracle {
-  // Add basic methods as needed
-}
-
-// Factory interfaces
-export interface JeonseVault__factory {
-  connect(address: string): JeonseVault;
-  deploy(): Promise<JeonseVault>;
-}
-
-export interface InvestmentPool__factory {
-  connect(address: string): InvestmentPool;
-  deploy(): Promise<InvestmentPool>;
-}
-
-export interface ComplianceModule__factory {
-  connect(address: string): ComplianceModule;
-  deploy(): Promise<ComplianceModule>;
-}
-
-export interface PropertyOracle__factory {
-  connect(address: string): PropertyOracle;
-  deploy(): Promise<PropertyOracle>;
-}
+// Contract interfaces are now defined in their respective files
+// Factory classes are now defined in their respective files

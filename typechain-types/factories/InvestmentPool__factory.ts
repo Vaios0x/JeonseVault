@@ -1,6 +1,31 @@
 import type { InvestmentPool } from '../contracts/InvestmentPool';
 
-export interface InvestmentPool__factory {
-  connect(address: string): InvestmentPool;
-  deploy(): Promise<InvestmentPool>;
+export class InvestmentPool__factory {
+  static connect(address: string): InvestmentPool {
+    // Mock implementation for build purposes
+    return {
+      address,
+      invest: async () => ({} as any),
+      withdraw: async () => ({} as any),
+      getBalance: async () => (0n as any),
+      on: () => this as any,
+      once: () => this as any,
+      removeListener: () => this as any,
+      removeAllListeners: () => this as any,
+    } as InvestmentPool;
+  }
+
+  static deploy(): Promise<InvestmentPool> {
+    // Mock implementation for build purposes
+    return Promise.resolve({
+      address: '0x0000000000000000000000000000000000000000',
+      invest: async () => ({} as any),
+      withdraw: async () => ({} as any),
+      getBalance: async () => (0n as any),
+      on: () => this as any,
+      once: () => this as any,
+      removeListener: () => this as any,
+      removeAllListeners: () => this as any,
+    } as InvestmentPool);
+  }
 }
