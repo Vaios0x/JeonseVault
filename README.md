@@ -347,15 +347,7 @@ npm run security:audit       # 보안 감사
 ## 🆘 지원
 
 ### 📞 지원 채널
-- **이메일**: support@jeonsevault.com
-- **Discord**: [JeonseVault 커뮤니티](https://discord.gg/jeonsevault)
-- **Telegram**: [@JeonseVault](https://t.me/JeonseVault)
-- **문서**: [docs.jeonsevault.com](https://docs.jeonsevault.com)
-
-### 👥 개발팀
-- **DevOps 리드**: devops@jeonsevault.com
-- **보안팀**: security@jeonsevault.com
-- **블록체인팀**: blockchain@jeonsevault.com
+- **Telegram**: [@Vai0sx](https://t.me/Vai0sx)
 
 ---
 

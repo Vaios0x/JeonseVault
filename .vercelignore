@@ -1,0 +1,66 @@
+# Archivos de desarrollo y testing
+test/
+tests/
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+coverage/
+.nyc_output/
+
+# Archivos de Hardhat y contratos (no necesarios en producción)
+contracts/
+artifacts/
+cache/
+typechain-types/
+hardhat.config.ts
+
+# Archivos de documentación
+docs/
+*.md
+!README.md
+
+# Archivos de configuración de desarrollo
+.env.local
+.env.development
+.env.test
+.env.example
+
+# Archivos de Docker
+Dockerfile
+docker-compose.yml
+docker-compose.*.yml
+
+# Archivos de monitoreo
+monitoring/
+
+# Archivos de scripts de desarrollo
+scripts/
+!scripts/vercel-build.sh
+
+# Archivos de cache y logs
+.cache/
+logs/
+*.log
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de backup
+*.backup
+*.bak
+
+# Archivos de testing de rendimiento
+lighthouse-report.*
+performance-reports/
+
+# Archivos de seguridad
+security-audit-*.json
