@@ -14,6 +14,14 @@ try {
         fs.rmSync(cachePath, { recursive: true, force: true });
     }
 
+    // Generar archivos TypeChain si no existen
+    console.log('🔧 Verificando archivos TypeChain...');
+    const typechainPath = path.join(process.cwd(), 'typechain-types');
+    if (!fs.existsSync(typechainPath)) {
+        console.log('📦 Generando archivos TypeChain...');
+        execSync('node scripts/generate-typechain.js', { stdio: 'inherit' });
+    }
+
     // Verificar que los archivos críticos existen
     console.log('🔍 Verificando archivos críticos...');
     const requiredFiles = [
@@ -21,7 +29,8 @@ try {
         'hooks/useWeb3.ts',
         'components/dashboard/DepositCard.tsx',
         'components/dashboard/StatsWidget.tsx',
-        'components/ui/Loading.tsx'
+        'components/ui/Loading.tsx',
+        'typechain-types/index.ts'
     ];
 
     for (const file of requiredFiles) {

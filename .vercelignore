@@ -13,7 +13,6 @@ coverage/
 contracts/
 artifacts/
 cache/
-typechain-types/
 hardhat.config.ts
 
 # Archivos de documentación
@@ -33,9 +32,10 @@ docker-compose.*.yml
 # Archivos de monitoreo
 monitoring/
 
-# Archivos de scripts (excepto vercel-build.js)
+# Archivos de scripts (excepto scripts de build)
 scripts/
 !scripts/vercel-build.js
+!scripts/generate-typechain.js
 
 # Archivos de cache y logs
 .cache/
