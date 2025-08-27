@@ -1,7 +1,7 @@
-# Archivos de testing (no necesarios en producción)
+# Archivos de testing
+__tests__/
 test/
 tests/
-__tests__/
 *.test.ts
 *.test.tsx
 *.spec.ts
@@ -9,7 +9,7 @@ __tests__/
 coverage/
 .nyc_output/
 
-# Archivos de Hardhat y contratos (no necesarios en producción)
+# Archivos de Hardhat
 contracts/
 artifacts/
 cache/
@@ -18,8 +18,6 @@ hardhat.config.ts
 
 # Archivos de documentación
 docs/
-*.md
-!README.md
 
 # Archivos de configuración de desarrollo
 .env.local
@@ -35,7 +33,7 @@ docker-compose.*.yml
 # Archivos de monitoreo
 monitoring/
 
-# Archivos de scripts de desarrollo
+# Archivos de scripts (excepto vercel-build.sh)
 scripts/
 !scripts/vercel-build.sh
 
