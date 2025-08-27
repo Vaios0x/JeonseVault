@@ -1,13 +1,42 @@
 {
   "name": "JeonseVault - 전세 보증금 스마트 컨트랙트 플랫폼",
   "short_name": "JeonseVault",
-  "description": "한국의 전세 시스템을 혁신하는 블록체인 기반 에스크로 플랫폼",
+  "description": "한국의 전세 시스템을 혁신하는 블록체인 기반 에스크로 플랫폼. 안전하고 투명한 보증금 관리와 투자 기회를 제공합니다.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0052CC",
   "orientation": "portrait-primary",
+  "lang": "ko",
+  "dir": "ltr",
+  "categories": [
+    "finance",
+    "productivity",
+    "business",
+    "real-estate"
+  ],
   "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
@@ -21,33 +50,43 @@
       "purpose": "maskable any"
     },
     {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
+      "src": "/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["finance", "productivity", "business"],
-  "lang": "ko",
-  "dir": "ltr",
   "screenshots": [
     {
       "src": "/screenshot-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "JeonseVault Dashboard - Desktop View"
     },
     {
       "src": "/screenshot-mobile.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "JeonseVault Dashboard - Mobile View"
     }
   ],
   "features": [
     "Blockchain-based escrow",
     "Investment opportunities",
     "Korean KYC compliance",
-    "Real-time monitoring"
+    "Real-time monitoring",
+    "Smart contract automation",
+    "Multi-language support",
+    "Offline functionality",
+    "Push notifications"
   ],
   "shortcuts": [
     {
@@ -85,6 +124,61 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "Compliance",
+      "short_name": "KYC",
+      "description": "신원 확인 및 규정 준수",
+      "url": "/compliance",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+jeonsevault",
+      "url": "/?protocol=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/upload",
+      "accept": {
+        "application/json": [
+          ".json"
+        ],
+        "text/csv": [
+          ".csv"
+        ]
+      }
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "handle_links": "preferred",
+  "scope_extensions": [
+    {
+      "origin": "https://api.jeonsevault.com"
     }
   ]
 }

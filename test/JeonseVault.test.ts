@@ -15,7 +15,7 @@ describe("JeonseVault", function () {
   let landlord: SignerWithAddress;
   let investor: SignerWithAddress;
 
-  const DEPOSIT_AMOUNT = ethers.parseEther("5000"); // 5K ETH (for testing)
+  const DEPOSIT_AMOUNT = ethers.parseEther("1000000"); // 1M KRW (valor razonable para tests)
   const PROPERTY_ID = "test-property-001";
   const PROPERTY_ADDRESS = "서울특별시 강남구 테스트동 123호";
 
@@ -126,7 +126,7 @@ describe("JeonseVault", function () {
 
     it("Should reject deposit with insufficient amount", async function () {
       const endDate = Math.floor(Date.now() / 1000) + (365 * 24 * 60 * 60);
-      const insufficientAmount = ethers.parseEther("100000"); // 100K KRW (below minimum)
+      const insufficientAmount = ethers.parseEther("500000"); // 500K KRW (below minimum)
 
       await expect(
         jeonseVault.connect(tenant).createDeposit(

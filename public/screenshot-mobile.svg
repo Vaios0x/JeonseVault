@@ -1,0 +1,70 @@
+
+<svg width="390" height="844" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mobileBgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="390" height="844" fill="url(#mobileBgGradient)"/>
+  
+  <!-- Header móvil -->
+  <rect x="0" y="0" width="390" height="120" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="20" y="40" width="350" height="60" rx="12" fill="#0052CC"/>
+  <text x="195" y="75" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">JeonseVault</text>
+  
+  <!-- Contenido principal -->
+  <rect x="20" y="140" width="350" height="600" rx="16" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Cards de estadísticas móviles -->
+  <rect x="40" y="160" width="310" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="195" y="180" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Balance Total</text>
+  <text x="195" y="210" text-anchor="middle" fill="#0052CC" font-family="Arial, sans-serif" font-size="20" font-weight="bold">₩125M</text>
+  <text x="195" y="225" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="10">+₩2.5M este mes</text>
+  
+  <rect x="40" y="260" width="310" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="195" y="280" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Depósitos Activos</text>
+  <text x="195" y="310" text-anchor="middle" fill="#0052CC" font-family="Arial, sans-serif" font-size="20" font-weight="bold">3</text>
+  <text x="195" y="325" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">₩85M en total</text>
+  
+  <!-- Lista de depósitos -->
+  <rect x="40" y="360" width="310" height="120" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="60" y="385" fill="#1e293b" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Gangnam-gu, Seoul</text>
+  <text x="60" y="405" fill="#64748b" font-family="Arial, sans-serif" font-size="12">₩500M • 85% completado</text>
+  <rect x="60" y="415" width="250" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="60" y="415" width="212" height="6" rx="3" fill="#0052CC"/>
+  <text x="60" y="435" fill="#10b981" font-family="Arial, sans-serif" font-size="12">15 días restantes</text>
+  <text x="320" y="435" fill="#0052CC" font-family="Arial, sans-serif" font-size="12">Activo</text>
+  
+  <rect x="40" y="500" width="310" height="120" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="60" y="525" fill="#1e293b" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Mapo-gu, Seoul</text>
+  <text x="60" y="545" fill="#64748b" font-family="Arial, sans-serif" font-size="12">₩300M • 100% completado</text>
+  <rect x="60" y="555" width="250" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="60" y="555" width="250" height="6" rx="3" fill="#0052CC"/>
+  <text x="60" y="575" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Completado exitosamente</text>
+  <text x="320" y="575" fill="#0052CC" font-family="Arial, sans-serif" font-size="12">Completado</text>
+  
+  <!-- Navegación inferior -->
+  <rect x="0" y="760" width="390" height="84" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="40" y="780" width="60" height="40" rx="8" fill="#0052CC"/>
+  <text x="70" y="805" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">🏠</text>
+  <text x="70" y="820" text-anchor="middle" fill="#0052CC" font-family="Arial, sans-serif" font-size="8">Inicio</text>
+  
+  <rect x="110" y="780" width="60" height="40" rx="8" fill="#f1f5f9"/>
+  <text x="140" y="805" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">💰</text>
+  <text x="140" y="820" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Depósitos</text>
+  
+  <rect x="180" y="780" width="60" height="40" rx="8" fill="#f1f5f9"/>
+  <text x="210" y="805" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">📈</text>
+  <text x="210" y="820" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Inversiones</text>
+  
+  <rect x="250" y="780" width="60" height="40" rx="8" fill="#f1f5f9"/>
+  <text x="280" y="805" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">👤</text>
+  <text x="280" y="820" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Perfil</text>
+  
+  <rect x="320" y="780" width="60" height="40" rx="8" fill="#f1f5f9"/>
+  <text x="350" y="805" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">⚙️</text>
+  <text x="350" y="820" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Más</text>
+</svg>

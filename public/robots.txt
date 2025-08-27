@@ -1,0 +1,23 @@
+# Robots.txt para JeonseVault
+# Permite el acceso a todos los robots de búsqueda
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jeonsevault.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important pages
+Allow: /dashboard
+Allow: /deposit/
+Allow: /investment/
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms

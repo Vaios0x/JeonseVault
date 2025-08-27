@@ -2,29 +2,25 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useAccount, useDisconnect } from 'wagmi'
-import { Menu, X, Home, PlusCircle, BarChart3, User, LogOut, Wallet } from 'lucide-react'
+import { Menu, X, Home, PlusCircle, BarChart3, User, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { LanguageSelector } from '@/components/ui/LanguageSelector'
+import { SimpleWalletConnect } from '@/components/ui/SimpleWalletConnect'
+import { useTranslations } from 'next-intl'
+
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { address, isConnected } = useAccount()
-  const { disconnect } = useDisconnect()
+  const t = useTranslations('navigation')
+  // Wallet connection state removed for simplified version
 
-  const formatAddress = (addr: string) => {
-    return `${addr.slice(0, 6)}...${addr.slice(-4)}`
-  }
-
-  const handleDisconnect = () => {
-    disconnect()
-  }
-
+  // Crear navigation dinámicamente para que se actualice con el idioma
   const navigation = [
-    { name: '홈', href: '/', icon: Home },
-    { name: '대시보드', href: '/dashboard', icon: User },
-    { name: '보증금 예치', href: '/deposit/create', icon: PlusCircle },
-    { name: '투자 풀', href: '/investment', icon: BarChart3 },
-    { name: '통계', href: '/stats', icon: BarChart3 },
+    { name: t('home'), href: '/', icon: Home },
+    { name: t('dashboard'), href: '/dashboard', icon: User },
+    { name: t('deposit'), href: '/deposit/create', icon: PlusCircle },
+    { name: t('investment'), href: '/investment', icon: BarChart3 },
+    { name: t('stats'), href: '/stats', icon: BarChart3 },
   ]
 
   return (
@@ -43,8 +39,17 @@ export function Header() {
             </Link>
           </div>
 
+          {/* Language Selector and Wallet Connect */}
+          <div className="flex items-center space-x-3">
+            {/* Language Selector */}
+            <LanguageSelector size="sm" />
+
+            {/* Wallet Connect Button */}
+            <SimpleWalletConnect size="sm" />
+          </div>
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -59,46 +64,15 @@ export function Header() {
             ))}
           </div>
 
-          {/* Wallet Connection */}
-          <div className="flex items-center space-x-4">
-            {isConnected ? (
-              <div className="flex items-center space-x-3">
-                {/* Wallet Info */}
-                <div className="hidden sm:flex items-center space-x-2 bg-gray-100 rounded-lg px-3 py-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm font-medium text-gray-700">
-                    {formatAddress(address!)}
-                  </span>
-                </div>
-                
-                {/* Disconnect Button */}
-                <Button
-                  onClick={handleDisconnect}
-                  variant="outline"
-                  size="sm"
-                  className="btn-hover"
-                  aria-label="지갑 연결 해제"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  <span className="hidden sm:inline">연결 해제</span>
-                  <span className="sm:hidden">해제</span>
-                </Button>
-              </div>
-            ) : (
-              /* AppKit web component opens Reown modal when not connected */
-              <appkit-button />
-            )}
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus-ring"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus-ring"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -119,29 +93,7 @@ export function Header() {
                 </Link>
               ))}
               
-              {/* Mobile Wallet Status */}
-              {isConnected && (
-                <div className="px-4 py-3 border-t border-gray-200 mt-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-sm font-medium text-gray-700">
-                        연결됨: {formatAddress(address!)}
-                      </span>
-                    </div>
-                    <Button
-                      onClick={handleDisconnect}
-                      variant="outline"
-                      size="sm"
-                      className="btn-hover"
-                      aria-label="지갑 연결 해제"
-                    >
-                      <LogOut className="w-4 h-4 mr-2" />
-                      해제
-                    </Button>
-                  </div>
-                </div>
-              )}
+              {/* Mobile wallet status removed for simplified version */}
             </div>
           </div>
         )}

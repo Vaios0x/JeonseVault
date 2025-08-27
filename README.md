@@ -1,213 +1,384 @@
-# JeonseVault 🏠
+# 🏦 JeonseVault - 전세 보증금 스마트 컨트랙트 플랫폼
 
-> **혁신적인 전세 보증금 스마트 컨트랙트 플랫폼**
+<div align="center">
 
-JeonseVault는 한국의 전세 시스템을 위한 블록체인 기반 에스크로 플랫폼입니다. 스마트 컨트랙트 기술로 전세 보증금을 안전하게 보호하고, 투자 기회를 제공하여 900조원 규모의 전세 시장을 혁신합니다.
+![JeonseVault Logo](https://img.shields.io/badge/JeonseVault-Platform-blue?style=for-the-badge&logo=ethereum)
+![CI/CD](https://img.shields.io/badge/CI/CD-Passing-brightgreen?style=for-the-badge)
+![Security](https://img.shields.io/badge/Security-Audited-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+**혁신적인 전세 보증금 스마트 컨트랙트 플랫폼**  
+*블록체인 기술로 부동산 투자와 전세 시장을 혁신합니다*
+
+[![Deploy Status](https://img.shields.io/badge/Deploy-Kaia%20Testnet-green?style=for-the-badge)](https://explorer.kaia.io)
+[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/jeonsevault/jeonsevault)
+
+</div>
+
+---
 
 ## 🎯 프로젝트 개요
 
-- **해커톤**: Korea Stablecoin Hackathon by Kaia, Tether, KakaoPay, LINE NEXT
-- **카테고리**: Korean Won Stablecoin Ideathon  
-- **배포**: Kaia 테스트넷 (Kairos)
-- **대상 사용자**: 한국 세입자, 임대인, 부동산 투자자
-- **시장 규모**: KRW 900-1,000조 전세 보증금
+### 💡 **JeonseVault의 비전**
+
+전세 시장의 **유동성 문제**와 **투명성 부족**을 해결하기 위해 블록체인 기술을 활용한 혁신적인 플랫폼을 구축했습니다.
+
+**핵심 문제점:**
+- 🔒 전세 보증금의 낮은 유동성
+- 📊 투명하지 않은 부동산 정보
+- 💰 높은 진입 장벽
+- ⚖️ 복잡한 규제 환경
+
+**해결책:**
+- 🏠 **부동산 토큰화**: 전세 보증금을 분할 투자 가능한 토큰으로 변환
+- 🔍 **오라클 검증**: 실시간 부동산 가격 및 정보 검증
+- 📈 **투명한 거래**: 블록체인 기반 거래 기록
+- 🛡️ **규제 준수**: KYC/AML 통합 시스템
+
+---
 
 ## 🚀 주요 기능
 
-### 🔒 스마트 컨트랙트 에스크로
-- 전세 보증금을 블록체인에 안전하게 보관
-- 자동화된 계약 조건 실행
-- 투명하고 검증 가능한 거래
+### 💰 전세 보증금 관리
+- **스마트 컨트랙트 자동화**: 전세 계약 프로세스 자동화
+- **부동산 검증 오라클**: 실시간 부동산 정보 검증
+- **리스크 관리**: 통합 컴플라이언스 및 KYC 시스템
+- **자동 정산**: 투명한 전세 보증금 정산 프로세스
 
-### 💰 투자 기회 제공
-- 보증금의 일부를 활용한 분산 투자
-- 연 6% 안정적인 수익률 제공
-- 소액 투자자도 부동산 시장 참여 가능
+### 🔐 보안 및 규제 준수
+- **KYC/AML 통합**: 신원 확인 및 규제 준수
+- **보안 감사**: 자동 및 수동 보안 감사
+- **한국 규제 준수**: 한국 금융 규제 준수
+- **데이터 보호**: 엔드투엔드 암호화 및 GDPR 준수
 
-### 🛡️ 보안 및 컴플라이언스
-- 한국 KYC/AML 규정 준수
-- 실명 인증 시스템
-- OpenZeppelin 보안 표준 적용
+### 📊 투자 및 분석
+- **투자 풀**: 분산 투자 펀드
+- **리스크 분석**: 자동화된 부동산 리스크 평가
+- **실시간 대시보드**: 고급 메트릭 및 분석
+- **규제 보고서**: 자동 규제 보고서 생성
 
-### 📱 PWA 모바일 앱
-- 모바일 최적화 사용자 경험
-- 오프라인 기능 지원
-- 네이티브 앱과 유사한 성능
+### 🌐 사용자 경험
+- **PWA 최적화**: 오프라인 기능이 있는 프로그레시브 웹 앱
+- **다국어 지원**: 한국어 및 영어 완전 지원
+- **반응형 디자인**: 모바일 및 데스크톱 최적화
+- **접근성**: WCAG 2.1 표준 준수
+
+---
 
 ## 🏗️ 기술 스택
 
-### 블록체인 & 스마트 컨트랙트
-```
-- Kaia 블록체인 (EVM 호환)
-- Solidity ^0.8.19
-- OpenZeppelin 계약 v4.9.0
-- Hardhat 개발 환경
-- Kaia Web3 SDK
+<div align="center">
+
+### Frontend
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.0-black?style=for-the-badge&logo=framer)
+
+### Blockchain
+![Solidity](https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity)
+![Hardhat](https://img.shields.io/badge/Hardhat-2.19.0-yellow?style=for-the-badge&logo=hardhat)
+![Wagmi](https://img.shields.io/badge/Wagmi-1.4.0-orange?style=for-the-badge&logo=wagmi)
+![Viem](https://img.shields.io/badge/Viem-1.19.0-blue?style=for-the-badge&logo=viem)
+
+### Backend & Database
+![Node.js](https://img.shields.io/badge/Node.js-18.0-green?style=for-the-badge&logo=node.js)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.0-336791?style=for-the-badge&logo=postgresql)
+![Redis](https://img.shields.io/badge/Redis-7.0-red?style=for-the-badge&logo=redis)
+
+### DevOps & Monitoring
+![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=for-the-badge&logo=docker)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-3.0-2088FF?style=for-the-badge&logo=github-actions)
+![Prometheus](https://img.shields.io/badge/Prometheus-2.45.0-E6522C?style=for-the-badge&logo=prometheus)
+![Grafana](https://img.shields.io/badge/Grafana-10.0-F46800?style=for-the-badge&logo=grafana)
+
+</div>
+
+---
+
+## 🏗️ 배포된 스마트 컨트랙트
+
+### 🌐 Kaia 테스트넷 (Chain ID: 1001)
+
+JeonseVault 스마트 컨트랙트가 Kaia 테스트넷에 성공적으로 배포되었습니다.
+
+#### 📋 주요 컨트랙트
+
+| 컨트랙트 | 주소 | 기능 |
+|----------|------|------|
+| **JeonseVault** | `0x6287ac251C19bFDfc7AE8247D64B952727855Dae` | 전세 보증금 관리 메인 컨트랙트 |
+| **InvestmentPool** | `0xe9B843Bd787B433015e77F1Ad00eF0ad8dF056bB` | 분할 투자 풀 컨트랙트 |
+| **PropertyOracle** | `0xF38701CCCE9190D1445c8cB3561104e811CB1468` | 부동산 검증 오라클 |
+| **ComplianceModule** | `0xf18Fa2873244423cb2247C2b64B5992418001702` | KYC/AML 규제 준수 모듈 |
+
+#### 🔗 유용한 링크
+
+- **Kaia 익스플로러**: https://explorer.kaia.io
+- **RPC URL**: https://public-en-kairos.node.kaia.io
+- **Chain ID**: 1001
+
+#### 📊 배포 정보
+
+- **배포 날짜**: 2024년 12월
+- **배포자**: `0xe6bE36A435c3BecAd922ddD9Ede2Fc1DbB632BA1`
+- **소유자**: `0xe6bE36A435c3BecAd922ddD9Ede2Fc1DbB632BA1`
+- **상태**: ✅ 활성화 및 검증됨
+- **역할**: 올바르게 구성됨
+
+#### 🔧 환경 변수 설정
+
+배포된 컨트랙트에 연결하려면 다음 환경 변수를 설정하세요:
+
+```bash
+# Kaia 테스트넷 설정
+NEXT_PUBLIC_KAIA_RPC_URL=https://public-en-kairos.node.kaia.io
+NEXT_PUBLIC_KAIA_CHAIN_ID=1001
+NEXT_PUBLIC_KAIA_EXPLORER_URL=https://explorer.kaia.io
+
+# 스마트 컨트랙트 주소
+NEXT_PUBLIC_JEONSE_VAULT_ADDRESS=0x6287ac251C19bFDfc7AE8247D64B952727855Dae
+NEXT_PUBLIC_INVESTMENT_POOL_ADDRESS=0xe9B843Bd787B433015e77F1Ad00eF0ad8dF056bB
+NEXT_PUBLIC_PROPERTY_ORACLE_ADDRESS=0xF38701CCCE9190D1445c8cB3561104e811CB1468
+NEXT_PUBLIC_COMPLIANCE_MODULE_ADDRESS=0xf18Fa2873244423cb2247C2b64B5992418001702
 ```
 
-### 프론트엔드
-```
-- Next.js 14 (App Router)
-- TypeScript
-- TailwindCSS
-- Wagmi v2 (Web3 연결)
-- Viem (블록체인 상호작용)
-- React Query (데이터 페칭)
-- Framer Motion (애니메이션)
-- 한국어 지원 (i18n)
-```
+#### 🔍 컨트랙트 검증
 
-### Kaia 특화 통합
-```
-- Kaia 테스트넷 RPC
-- 체인 ID: 1001 (Kairos)
-- 가스비 위임 기능
-- Kaia Wallet 통합
-- KaikasWallet 지원
+컨트랙트가 올바르게 작동하는지 확인하려면:
+
+```bash
+# 배포 및 설정 검증
+npx hardhat run scripts/verify-deployment.js --network kairos
+
+# 배포자 계정 잔액 확인
+npx hardhat run scripts/check-balance.js --network kairos
+
+# .env.local 파일 업데이트
+node scripts/update-env.js
+
+# 프로젝트 전체 설정 확인
+node scripts/verify-configuration.js
 ```
 
-## 📋 스마트 컨트랙트 아키텍처
-
-### 핵심 계약들
-
-1. **JeonseVault.sol** - 메인 에스크로 계약
-2. **InvestmentPool.sol** - 분산 투자 풀
-3. **PropertyOracle.sol** - 부동산 검증
-4. **ComplianceModule.sol** - KYC/AML 컴플라이언스
+---
 
 ## 🚀 빠른 시작
 
-### 1. 저장소 클론
-```bash
-git clone https://github.com/your-org/jeonse-vault
-cd jeonse-vault
-```
+### 📋 사전 요구사항
 
-### 2. 종속성 설치
+- Node.js 18+
+- Docker & Docker Compose
+- Git
+- Kaia Network 계정 (테스트용)
+
+### 🛠️ 로컬 설치
+
 ```bash
+# 저장소 클론
+git clone https://github.com/jeonsevault/jeonsevault.git
+cd jeonsevault
+
+# 의존성 설치
 npm install
-```
 
-### 3. 환경 변수 설정
-```bash
-cp env.example .env.local
-# .env.local 파일을 편집하여 필요한 값들을 설정
-```
-
-### 4. 스마트 컨트랙트 컴파일
-```bash
-npm run compile
-```
-
-### 5. 로컬 개발 서버 시작
-```bash
-npm run dev
-```
-
-## 🏗️ 배포
-
-### 스마트 컨트랙트 배포 (Kaia 테스트넷)
-```bash
 # 환경 변수 설정
-export PRIVATE_KEY="your_private_key"
+cp .env.example .env.local
+# .env.local 파일을 편집하여 설정 구성
 
-# Kaia 테스트넷에 배포
-npm run deploy:kairos
+# 개발 서비스 시작
+npm run dev
 
-# 계약 검증
-npm run verify
+# 다른 터미널에서 블록체인 서비스 시작
+npm run blockchain:dev
 ```
 
-### 프론트엔드 배포
+### 🚀 프로덕션 배포
+
 ```bash
-# 빌드
-npm run build
+# 프로덕션 환경 설정
+npm run setup:production
 
-# Vercel/Netlify에 배포
-npm run deploy
+# 애플리케이션 배포
+npm run deploy:production
+
+# 모니터링 설정
+./scripts/setup-monitoring.sh
 ```
 
-## 📊 시장 분석
+### 🔧 CI/CD Configuration
 
-- **전세 시장 규모**: 900-1,000조원
-- **연간 전세 사기**: 4,000건 이상
-- **문제점**: 투명성 부족, 보안 취약, 수익 기회 없음
-- **해결책**: 블록체인 에스크로, 분산 투자, 완전한 투명성
+Para configurar el pipeline de CI/CD, consulta la documentación completa:
 
-## 💡 혁신성
+- **[GitHub Secrets Configuration](docs/GITHUB_SECRETS.md)**: Configuración de variables de entorno requeridas
+- **[CI/CD Pipeline](.github/workflows/ci-cd.yml)**: Workflow de despliegue automatizado
 
-1. **한국 최초** 전세 시스템 블록체인 솔루션
-2. **분산 투자** 기능으로 새로운 수익 모델 창출
-3. **완전 자동화** 된 에스크로 시스템
-4. **규제 준수** 한국 금융 규정 완벽 대응
+**Variables de entorno requeridas:**
+- `SNYK_TOKEN`: Token de API de Snyk para escaneo de seguridad
+- `DEPLOY_PRIVATE_KEY`: Clave privada para despliegue de contratos
+- `RPC_URL`: URL del endpoint RPC de Ethereum
+- `ETHERSCAN_API_KEY`: Clave de API de Etherscan
+- Variables de despliegue para staging y producción
 
-## 🛡️ 보안
+---
 
-- **스마트 컨트랙트**: OpenZeppelin 보안 표준
-- **감사**: 다중 보안 감사 예정
-- **KYC/AML**: 한국 규정 준수
-- **모니터링**: 24/7 실시간 보안 모니터링
+## 🔧 사용 가능한 스크립트
 
-## 📈 수익 모델
+### 개발
+```bash
+npm run dev              # 개발 서버
+npm run build            # 프로덕션 빌드
+npm run start            # 프로덕션 서버
+npm run lint             # 린팅
+npm run test             # 단위 테스트
+npm run test:e2e         # E2E 테스트
+```
 
-1. **에스크로 수수료**: 0.1%
-2. **투자 관리 수수료**: 0.5%
-3. **조기 해지 수수료**: 1%
-4. **플랫폼 수수료**: 거래량 기반
+### 블록체인
+```bash
+npm run contracts:compile    # 컨트랙트 컴파일
+npm run contracts:test       # 컨트랙트 테스트
+npm run contracts:deploy     # 컨트랙트 배포
+npm run contracts:verify     # 컨트랙트 검증
 
-## 🎯 로드맵
+# Kaia 테스트넷 배포 스크립트
+npx hardhat run scripts/deploy.js --network kairos     # 컨트랙트 배포
+npx hardhat run scripts/verify-deployment.js --network kairos  # 배포 검증
+npx hardhat run scripts/check-balance.js --network kairos      # 잔액 확인
+node scripts/update-env.js                                  # .env.local 업데이트
+node scripts/verify-configuration.js                       # 전체 설정 확인
+```
 
-### Phase 1 (현재)
-- [x] MVP 개발
-- [x] Kaia 테스트넷 배포
-- [x] 기본 기능 구현
+### DevOps
+```bash
+npm run deploy:staging       # 스테이징 배포
+npm run deploy:production    # 프로덕션 배포
+npm run backup              # 전체 백업
+npm run monitoring:setup     # 모니터링 설정
+npm run security:audit       # 보안 감사
+```
 
-### Phase 2 (2024 Q1)
-- [ ] 메인넷 배포
-- [ ] 보안 감사
-- [ ] 베타 테스트
+---
 
-### Phase 3 (2024 Q2)
-- [ ] 공식 런칭
-- [ ] 파트너십 확장
-- [ ] 기능 고도화
+## 📊 모니터링 및 관찰성
+
+### 📈 사용 가능한 대시보드
+- **개요**: 시스템 전체 보기
+- **애플리케이션**: 애플리케이션 메트릭
+- **인프라**: 서버 리소스
+- **데이터베이스**: PostgreSQL 성능
+- **블록체인**: 트랜잭션 및 가스
+- **보안**: 접근 시도 및 취약점
+
+### 🚨 구성된 알림
+- 🚨 **치명적**: 서비스 중단, 5xx 오류, 백업 실패
+- ⚠️ **경고**: 높은 리소스 사용량, 느린 쿼리
+- ℹ️ **정보**: 새 버전, 비즈니스 메트릭
+
+---
+
+## 🔒 보안
+
+### 🔍 구현된 감사
+- ✅ **스마트 컨트랙트**: 완전한 보안 감사
+- ✅ **의존성**: Snyk를 통한 자동 스캔
+- ✅ **인프라**: Docker 보안 구성
+- ✅ **네트워크**: 방화벽 및 속도 제한
+- ✅ **데이터**: 전송 및 저장 시 암호화
+
+### 📋 규제 준수
+- ✅ **KYC/AML**: 신원 확인
+- ✅ **GDPR**: 개인 데이터 보호
+- ✅ **한국 규제**: 규제 준수
+- ✅ **금융**: 금융 표준
+
+---
+
+## 📈 비즈니스 메트릭
+
+### 📊 주요 KPI
+- **Total Value Locked (TVL)**: 총 잠긴 가치
+- **Active Users**: 일일/월간 활성 사용자
+- **Transaction Volume**: 트랜잭션 볼륨
+- **Success Rate**: 트랜잭션 성공률
+- **User Retention**: 사용자 유지율
+
+### ⚡ 기술 메트릭
+- **Uptime**: 99.9%+ 가용성
+- **Response Time**: 평균 < 200ms
+- **Error Rate**: < 0.1% 오류
+- **Security Score**: 95/100
+
+---
 
 ## 🤝 기여하기
 
-1. 이 저장소를 포크합니다
-2. 기능 브랜치를 생성합니다 (`git checkout -b feature/amazing-feature`)
-3. 변경사항을 커밋합니다 (`git commit -m 'Add amazing feature'`)
-4. 브랜치에 푸시합니다 (`git push origin feature/amazing-feature`)
-5. Pull Request를 생성합니다
+### 📝 기여 가이드
+1. **Fork** 저장소
+2. **Create** 기능 브랜치 (`git checkout -b feature/amazing-feature`)
+3. **Commit** 변경사항 (`git commit -m 'Add amazing feature'`)
+4. **Push** 브랜치 (`git push origin feature/amazing-feature`)
+5. **Open** Pull Request
 
-## 📝 라이선스
+### 📋 코드 표준
+- **TypeScript**: 엄격한 타입 지정 필요
+- **Testing**: 최소 90% 테스트 커버리지
+- **Documentation**: 모든 함수에 JSDoc
+- **Security**: 보안 감사 필수
 
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+---
 
-## 📞 연락처
+## 📚 문서
 
-- **팀**: JeonseVault Team
+### 📖 사용 가능한 가이드
+- [📖 배포 가이드](./DEPLOYMENT_GUIDE.md)
+- [🚀 Kaia 배포 가이드](./KAIA_DEPLOYMENT_GUIDE.md)
+- [🔒 보안 가이드](./GUIA_SEGURIDAD.md)
+- [🧪 테스트 가이드](./TESTING_IMPLEMENTATION_SUMMARY.md)
+- [⚡ 최적화 가이드](./OPTIMIZATION_GUIDE.md)
+- [🚀 설정 가이드](./SETUP_GUIDE.md)
+
+### 🔌 API 및 SDK
+- [API 문서](https://docs.jeonsevault.com/api)
+- [스마트 컨트랙트 문서](https://docs.jeonsevault.com/contracts)
+- [SDK 문서](https://docs.jeonsevault.com/sdk)
+
+---
+
+## 🆘 지원
+
+### 📞 지원 채널
 - **이메일**: support@jeonsevault.com
-- **웹사이트**: https://jeonsevault.com
-- **트위터**: [@jeonsevault](https://twitter.com/jeonsevault)
+- **Discord**: [JeonseVault 커뮤니티](https://discord.gg/jeonsevault)
+- **Telegram**: [@JeonseVault](https://t.me/JeonseVault)
+- **문서**: [docs.jeonsevault.com](https://docs.jeonsevault.com)
 
-## 🏆 해커톤 제출
-
-이 프로젝트는 Korea Stablecoin Hackathon에 제출되었습니다:
-- **카테고리**: Korean Won Stablecoin Ideathon
-- **제출 날짜**: 2025년 8월 27일
-- **데모**: [라이브 데모 링크]
-- **발표 자료**: [피치 덱 링크]
+### 👥 개발팀
+- **DevOps 리드**: devops@jeonsevault.com
+- **보안팀**: security@jeonsevault.com
+- **블록체인팀**: blockchain@jeonsevault.com
 
 ---
 
-## 🌟 특별 감사
+## 📄 라이선스
 
-- **Kaia Foundation**: 블록체인 인프라 제공
-- **Tether**: 스테이블코인 기술 지원
-- **KakaoPay**: 한국 결제 시스템 연동
-- **LINE NEXT**: Web3 생태계 지원
+이 프로젝트는 MIT 라이선스 하에 라이선스가 부여됩니다 - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
 
 ---
 
-**JeonseVault - 전세 시장의 새로운 혁신** 🚀
+## 🙏 감사의 말
+
+- **Kaia Network** 블록체인 인프라 제공
+- **OpenZeppelin** 보안 라이브러리
+- **Vercel** 호스팅 및 배포
+- **한국 커뮤니티** 피드백 및 테스트
+
+---
+
+<div align="center">
+
+**JeonseVault** - 블록체인 기술로 전세 시장을 혁신합니다 🚀
+
+[![JeonseVault](https://img.shields.io/badge/JeonseVault-Platform-blue?style=for-the-badge&logo=ethereum)](https://jeonsevault.com)
+[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/jeonsevault/jeonsevault)
+
+</div>

@@ -1,0 +1,613 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Completed successfully",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "reset": "Reset",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "download": "Download",
+    "upload": "Upload",
+    "copy": "Copy",
+    "paste": "Paste",
+    "select": "Select",
+    "deselect": "Deselect",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "retry": "Retry",
+    "continue": "Continue",
+    "skip": "Skip",
+    "finish": "Finish",
+    "start": "Start",
+    "stop": "Stop",
+    "pause": "Pause",
+    "resume": "Resume",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "profile": "Profile",
+    "settings": "Settings",
+    "help": "Help",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "security": "Security",
+    "language": "Language",
+    "currency": "Currency",
+    "timezone": "Timezone"
+  },
+  "wallet": {
+    "connect": "Connect Wallet",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "disconnect": "Disconnect",
+    "address": "Address",
+    "balance": "Balance",
+    "network": "Network",
+    "switchNetwork": "Switch Network",
+    "copyAddress": "Copy Address",
+    "addressCopied": "Address copied",
+    "wrongNetwork": "Wrong Network",
+    "connectWallet": "Connect your wallet",
+    "walletNotConnected": "Wallet not connected",
+    "pleaseConnect": "Please connect your wallet to continue"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "deposit": "Deposit",
+    "investment": "Investment Pool",
+    "stats": "Statistics",
+    "help": "Help",
+    "docs": "Documentation",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "security": "Security Policy"
+  },
+
+  "home": {
+    "hero": {
+      "title": "Revolutionizing Korea's Jeonse Market",
+      "subtitle": "Blockchain Escrow Platform",
+      "description": "JeonseVault protects housing deposits safely using smart contract technology and provides investment opportunities, revolutionizing the 900 trillion KRW Jeonse market.",
+      "dashboard": "Dashboard",
+      "createDeposit": "Create Deposit",
+      "cta": {
+        "primary": "Get Started",
+        "secondary": "Try Demo"
+      },
+      "trust": {
+        "kaia": "Kaia Official Support",
+        "security": "OpenZeppelin Security",
+        "compliance": "Korean Regulation Compliance"
+      }
+    },
+    "description": "JeonseVault protects housing deposits safely using smart contract technology and provides investment opportunities, revolutionizing the 900 trillion KRW Jeonse market.",
+    "stats": {
+      "title": "JeonseVault by the Numbers",
+      "description": "An innovative platform solving market problems and creating new opportunities",
+      "marketSize": "Jeonse Market Size",
+      "fraudCases": "Annual Fraud Cases",
+      "lowFee": "Low Fee",
+      "annualReturn": "Annual Return"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "JeonseVault protects deposits and generates returns through 4 simple and secure steps",
+      "steps": {
+        "kyc": {
+          "title": "1. KYC Verification",
+          "description": "Build secure trading environment through real-name verification and bank account connection",
+          "details": [
+            "Korean real-name verification system integration",
+            "Bank account connection and verification",
+            "Transaction limit setting",
+            "Compliance check"
+          ]
+        },
+        "property": {
+          "title": "2. Property Registration",
+          "description": "Verify through property ownership confirmation and market value assessment",
+          "details": [
+            "Property registration certificate verification",
+            "Current market value assessment",
+            "Landlord ownership verification",
+            "Property condition inspection"
+          ]
+        },
+        "smartContract": {
+          "title": "3. Smart Contract",
+          "description": "Safely store deposits in smart contracts",
+          "details": [
+            "Automatic escrow system",
+            "Contract terms codification",
+            "Transparent fund management",
+            "Dispute resolution mechanism"
+          ]
+        },
+        "investment": {
+          "title": "4. Investment & Returns",
+          "description": "Generate additional returns through safe investments using part of deposits",
+          "details": [
+            "Utilize 20% of deposits in investment pool",
+            "6% annual stable return",
+            "Diversified investment portfolio",
+            "Real-time return monitoring"
+          ]
+        }
+      }
+    },
+    "cta": {
+      "title": "A New Beginning for Jeonse Innovation",
+      "description": "Start safe and profitable Jeonse deposit management with JeonseVault.",
+      "primary": "Get Started",
+      "secondary": "View Investment Guide"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Hello, {name}",
+    "overview": "Overview",
+    "recentActivity": "Recent Activity",
+    "header": {
+      "back": "Back",
+      "title": "Dashboard",
+      "subtitle": "Manage your deposits and investments",
+      "createDeposit": "Create Deposit",
+      "viewInvestments": "View Investments"
+    },
+    "deposits": {
+      "title": "My Deposits",
+      "viewAll": "View All"
+    },
+    "stats": {
+      "totalDeposits": "Total Deposits",
+      "activeInvestments": "Active Investments",
+      "totalReturns": "Total Returns",
+      "pendingActions": "Pending Actions"
+    },
+    "actions": {
+      "createDeposit": "Create Deposit",
+      "viewInvestments": "View Investments",
+      "withdrawFunds": "Withdraw Funds",
+      "viewReports": "View Reports"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "createDeposit": "Create Deposit",
+      "viewInvestments": "View Investments",
+      "viewStats": "View Statistics"
+    },
+    "recentDeposits": {
+      "title": "Recent Deposits",
+      "viewAll": "View All",
+      "empty": {
+        "title": "No deposits yet",
+        "description": "Start by creating your first deposit to see it here",
+        "cta": "Create First Deposit"
+      }
+    },
+    "compliance": {
+      "title": "Compliance Status",
+      "status": "Status",
+      "verified": "Verified",
+      "pending": "Pending",
+      "level": "Level",
+      "limit": "Compliance Limit",
+      "noLimit": "No Limit"
+    },
+    "connectWallet": {
+      "title": "Connect your wallet",
+      "description": "You need to connect your wallet to see the statistics"
+    }
+  },
+  "deposit": {
+    "title": "Deposit",
+    "deposits": {
+      "title": "My Deposits",
+      "empty": {
+        "title": "No deposits yet",
+        "description": "Start by creating your first deposit",
+        "cta": "Create First Deposit"
+      }
+    },
+    "empty": {
+      "title": "No deposits found",
+      "description": "Create your first deposit to get started",
+      "cta": "Create First Deposit"
+    },
+    "create": {
+      "title": "New Deposit",
+      "description": "Start a safe and transparent Jeonse deposit",
+      "form": {
+        "landlordAddress": "Landlord Address",
+        "propertyId": "Property ID",
+        "propertyAddress": "Property Address",
+        "amount": "Deposit Amount",
+        "endDate": "Contract End Date",
+        "enableInvestment": "Enable Investment",
+        "terms": "Agree to Terms",
+        "submit": "Create Deposit"
+      },
+      "validation": {
+        "landlordRequired": "Please enter landlord address",
+        "propertyRequired": "Please enter property information",
+        "amountRequired": "Please enter deposit amount",
+        "amountMin": "Minimum deposit is 1M KRW",
+        "amountMax": "Maximum deposit is 1B KRW",
+        "dateRequired": "Please select contract end date",
+        "dateFuture": "Contract end date must be in the future",
+        "termsRequired": "Please agree to terms"
+      }
+    },
+    "list": {
+      "title": "My Deposits",
+      "empty": "No deposits found",
+      "createFirst": "Create your first deposit"
+    },
+    "details": {
+      "title": "Deposit Details",
+      "status": {
+        "active": "Active",
+        "completed": "Completed",
+        "disputed": "Disputed",
+        "refunded": "Refunded",
+        "expired": "Expired"
+      },
+      "actions": {
+        "release": "Release Deposit",
+        "dispute": "Report Dispute",
+        "extend": "Extend",
+        "viewContract": "View Contract"
+      },
+      "fields": {
+        "deadline": "Deadline",
+        "performance": "Performance",
+        "remaining": "Remaining",
+        "daysRemaining": "Days Remaining",
+        "fundingProgress": "Funding Progress"
+      },
+      "buttons": {
+        "viewDetails": "View Details",
+        "invest": "Invest",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    }
+  },
+  "createDeposit": {
+    "title": "Create New Deposit",
+    "description": "Configure a new Jeonse deposit with investment options",
+    "form": {
+      "propertyInfo": "Property Information",
+      "propertyId": "Property ID",
+      "propertyIdHelp": "Unique property identifier",
+      "propertyType": "Property Type",
+      "propertyAddress": "Complete Address",
+      "propertyAddressHelp": "Complete property address",
+      "landlordAddress": "Landlord Address",
+      "landlordAddressHelp": "Landlord's wallet address",
+      "verifyProperty": "Verify Property",
+      "depositInfo": "Deposit Information",
+      "amount": "Deposit Amount",
+      "amountHelp": "Amount in KRW (1M - 10B)",
+      "endDate": "End Date",
+      "endDateHelp": "Contract end date",
+      "description": "Description (Optional)",
+      "descriptionPlaceholder": "Additional deposit details...",
+      "descriptionHelp": "Additional information about the deposit",
+      "investmentOptions": "Investment Options",
+      "enableInvestment": "Enable investment",
+      "investmentPercentage": "Investment percentage",
+      "estimatedReturn": "Estimated annual return",
+      "estimatedReturnDescription": "Based on 6% annual rate on invested amount",
+      "transactionLimit": "Transaction limit",
+      "complianceLevel": "Compliance level",
+      "cancel": "Cancel",
+      "creating": "Creating deposit...",
+      "submit": "Create Deposit"
+    },
+    "validation": {
+      "landlordRequired": "Please enter landlord address",
+      "propertyRequired": "Please enter property information",
+      "amountRequired": "Please enter deposit amount",
+      "amountMin": "Minimum deposit is 1M KRW",
+      "amountMax": "Maximum deposit is 1B KRW",
+      "dateRequired": "Please select contract end date",
+      "dateFuture": "Contract end date must be in the future",
+      "termsRequired": "Please agree to terms"
+    }
+  },
+  "investment": {
+    "title": "Investment Pool",
+    "description": "Manage your investments in Jeonse deposits",
+    "header": {
+      "back": "Back to Dashboard"
+    },
+    "pool": {
+      "name": "Main Investment Pool",
+      "description": "Diversified investment pool in high-quality Jeonse deposits"
+    },
+    "status": {
+      "active": "Active",
+      "full": "Full",
+      "closed": "Closed"
+    },
+    "risk": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "stats": {
+      "annualReturn": "Annual Return",
+      "investors": "Investors",
+      "totalInvested": "Total Invested",
+      "daysRemaining": "Days Remaining",
+      "poolProgress": "Pool Progress"
+    },
+    "propertyInfo": {
+      "title": "Property Information",
+      "type": "Property Type",
+      "location": "Location",
+      "duration": "Duration",
+      "months": "months",
+      "startDate": "Start Date"
+    },
+    "actions": {
+      "view": "View",
+      "viewDetails": "View Details",
+      "export": "Export",
+      "share": "Share",
+      "invest": "Invest",
+      "withdraw": "Withdraw"
+    },
+    "share": {
+      "title": "Investment Pool",
+      "text": "Check out this investment pool on JeonseVault with",
+      "annualReturn": "annual return"
+    },
+    "modal": {
+      "confirmWithdraw": {
+        "title": "Confirm Withdrawal",
+        "question": "Are you sure you want to withdraw your investment?",
+        "description": "This action will withdraw your investment from the pool. Note that early withdrawal penalties may apply.",
+        "cancel": "Cancel",
+        "confirm": "Confirm Withdrawal"
+      }
+    },
+    "performance": {
+      "title": "Performance Metrics",
+      "completionRate": "Completion Rate",
+      "avgValue": "Average Value",
+      "avgReturn": "Average Return"
+    },
+    "overview": {
+      "totalPoolValue": "Total Pool Value",
+      "userValue": "User Value",
+      "expectedReturn": "Expected Return",
+      "totalInvestors": "Total Investors"
+    },
+    "pools": {
+      "title": "Investment Pools",
+      "empty": "No available investment pools",
+      "join": "Join",
+      "leave": "Leave",
+      "details": "View Details"
+    },
+    "calculator": {
+      "title": "Return Calculator",
+      "investment": "Investment Amount",
+      "duration": "Investment Period",
+      "expectedReturn": "Expected Return",
+      "calculate": "Calculate"
+    }
+  },
+  "stats": {
+    "title": "Statistics",
+    "description": "Analysis and metrics of your activity in JeonseVault",
+    "header": {
+      "back": "Back to Dashboard"
+    },
+    "overview": {
+      "totalDeposits": "Total Deposits",
+      "totalReturns": "Total Returns",
+      "averageReturn": "Average Return",
+      "totalInvestors": "Total Investors"
+    },
+    "detailed": {
+      "title": "Detailed Statistics",
+      "depositsByStatus": "Deposits by Status",
+      "status": {
+        "active": "Active",
+        "completed": "Completed",
+        "pending": "Pending"
+      },
+      "investmentPool": "Investment Pool",
+      "totalPools": "Total Pools",
+      "userInvestments": "User Investments",
+      "totalValueInvested": "Total Value Invested"
+    },
+    "subtitle": "Platform performance and metrics",
+    "marketSize": "Jeonse Market Size",
+    "activeDeposits": "Active Deposits",
+    "totalValue": "Total Value",
+    "avgValue": "Average Value",
+    "avgReturn": "Average Return",
+    "activeUsers": "Active Users",
+    "securityScore": "Security Score",
+    "complianceRate": "Compliance Rate",
+    "last24h": "Last 24h",
+    "summary": {
+      "title": "Platform Overview",
+      "description": "The platform has experienced sustained growth across all key indicators",
+      "growth": "Average growth"
+    }
+  },
+  "errors": {
+    "general": "An error occurred",
+    "network": "Network Error",
+    "transaction": "Transaction Error",
+    "insufficientFunds": "Insufficient funds",
+    "userRejected": "User rejected",
+    "contractError": "Smart contract error",
+    "validation": "Invalid input",
+    "notFound": "Page not found",
+    "unauthorized": "Unauthorized",
+    "serverError": "Server error",
+    "timeout": "Timeout",
+    "unknown": "Unknown error"
+  },
+  "notifications": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info",
+    "depositCreated": "Deposit created successfully",
+    "depositReleased": "Deposit released successfully",
+    "investmentJoined": "Successfully joined investment pool",
+    "transactionPending": "Transaction pending",
+    "transactionConfirmed": "Transaction confirmed",
+    "transactionFailed": "Transaction failed"
+  },
+  "features": {
+    "security": {
+      "title": "Bank-Level Security",
+      "description": "Multi-signature smart contracts and real-time monitoring ensure your deposits are protected"
+    },
+    "investment": {
+      "title": "Smart Investment",
+      "description": "Generate returns on your deposits through our diversified investment pool"
+    },
+    "transparency": {
+      "title": "Full Transparency",
+      "description": "All transactions and fund movements are visible on the blockchain"
+    },
+    "community": {
+      "title": "Community Driven",
+      "description": "Built by and for the Korean Jeonse community"
+    },
+    "compliance": {
+      "title": "Regulatory Compliance",
+      "description": "Fully compliant with Korean financial regulations and KYC requirements"
+    },
+    "performance": {
+      "title": "High Performance",
+      "description": "Fast transactions and low fees powered by Kaia blockchain"
+    }
+  },
+  "tools": {
+    "calculator": {
+      "title": "Return Calculator"
+    },
+    "guide": {
+      "title": "Investment Guide"
+    }
+  },
+  "info": {
+    "howItWorks": {
+      "title": "How It Works"
+    },
+    "benefits": {
+      "title": "Benefits",
+      "security": "Bank-level security with multi-signature protection",
+      "transparency": "Full transparency with blockchain verification",
+      "investment": "Earn returns on your deposits",
+      "compliance": "Regulatory compliant platform"
+    },
+    "fees": {
+      "title": "Fee Structure",
+      "escrow": "0.5% escrow fee",
+      "gas": "Network gas fees apply",
+      "earlyRelease": "1% early release fee"
+    }
+  },
+  "contractNotDeployed": {
+    "title": "Contract Not Deployed",
+    "description": "The smart contract is not deployed on this network yet",
+    "cta": "Deploy Contract"
+  },
+  "header": {
+    "back": "Back",
+    "title": "Dashboard",
+    "subtitle": "Manage your deposits and investments",
+    "createDeposit": "Create Deposit",
+    "invest": "Invest"
+  },
+  "filters": {
+    "search": "Search deposits...",
+    "allStatus": "All Status",
+    "active": "Active",
+    "completed": "Completed",
+    "disputed": "Disputed",
+    "pending": "Pending",
+    "cancelled": "Cancelled",
+    "sortByDate": "Sort by Date",
+    "sortByAmount": "Sort by Amount",
+    "sortByProperty": "Sort by Property"
+  },
+  "footer": {
+    "description": "Blockchain-based escrow platform revolutionizing Korea's Jeonse housing system. Providing safe and transparent deposit management and investment opportunities.",
+    "product": "Product",
+    "createDeposit": "Create Deposit",
+    "invest": "Invest",
+    "stats": "Statistics",
+    "company": "Company",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "help": "Help",
+    "docs": "Documentation",
+    "status": "Status",
+    "rights": "All rights reserved.",
+    "hackathon": "Kaia Stablecoin Hackathon",
+    "testnet": "Kaia Testnet",
+    "platform": {
+      "title": "Platform",
+      "deposit": "Deposit",
+      "investment": "Investment Pool",
+      "dashboard": "Dashboard"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Help Center",
+      "docs": "Documentation",
+      "security": "Security Policy",
+      "contact": "Contact Us"
+    },
+    "social": {
+      "title": "Connect"
+    },
+    "techStack": {
+      "title": "Tech Stack"
+    },
+    "footerStats": {
+      "marketSize": "Jeonse Market Size",
+      "fraudCases": "Annual Fraud Cases",
+      "escrowFee": "Escrow Fee",
+      "expectedReturn": "Expected Annual Return"
+    },
+    "copyright": "All rights reserved.",
+    "footerPrivacy": "Privacy Policy",
+    "footerTerms": "Terms of Service",
+    "madeBy": "Made by @Vai0sx"
+  }
+}

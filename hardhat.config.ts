@@ -1,6 +1,14 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import * as dotenv from "dotenv";
 
+// Cargar variables de entorno desde .env.local
+dotenv.config({ path: '.env.local' });
+
+/**
+ * Configuración simplificada de Hardhat para JeonseVault
+ * Optimizada para deployment en Kaia testnet
+ */
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.19",
@@ -10,38 +18,48 @@ const config: HardhatUserConfig = {
         runs: 200,
       },
       viaIR: true,
+      evmVersion: "paris",
     },
   },
+  
   networks: {
+    // Red local para desarrollo
+    hardhat: {
+      chainId: 31337,
+      gas: 12000000,
+      blockGasLimit: 12000000,
+      allowUnlimitedContractSize: true,
+      accounts: {
+        mnemonic: "test test test test test test test test test test test junk",
+        count: 20,
+        accountsBalance: "10000000000000000000000", // 10,000 ETH
+      },
+    },
+    
+    // Kaia testnet
     kairos: {
       url: "https://public-en-kairos.node.kaia.io",
       chainId: 1001,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 25000000000, // 25 Gwei
-    },
-    localhost: {
-      url: "http://127.0.0.1:8545",
-      chainId: 31337,
+      gas: 12000000,
+      blockGasLimit: 12000000,
+      timeout: 60000,
     },
   },
-  etherscan: {
-    apiKey: {
-      kairos: "dummy", // Kaia testnet doesn't require API key
-    },
-    customChains: [
-      {
-        network: "kairos",
-        chainId: 1001,
-        urls: {
-          apiURL: "https://api-baobab.klaytnscope.com/api",
-          browserURL: "https://baobab.klaytnscope.com",
-        },
-      },
-    ],
+  
+  // Configuración de paths
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts",
   },
-  gasReporter: {
-    enabled: process.env.REPORT_GAS !== undefined,
-    currency: "USD",
+  
+  // Configuración de mocha para tests
+  mocha: {
+    timeout: 60000,
+    color: true,
   },
 };
 

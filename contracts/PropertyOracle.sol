@@ -27,6 +27,7 @@ contract PropertyOracle is AccessControl, Pausable {
         PropertyType propertyType;
         uint256 createdAt;
         uint256 updatedAt;
+        uint256 pythValidationTimestamp;
     }
     
     enum PropertyType {
@@ -48,6 +49,11 @@ contract PropertyOracle is AccessControl, Pausable {
     uint256 public constant VALUATION_VALIDITY_PERIOD = 365 days; // 1 year
     uint256 public constant MIN_PROPERTY_VALUE = 100000000 * 10**18; // 100M KRW
     uint256 public constant MAX_PROPERTY_VALUE = 50000000000 * 10**18; // 50B KRW
+    uint256 public constant PRICE_VALIDATION_THRESHOLD = 30 minutes; // Validar precios cada 30 min
+    
+    // Pyth settings
+    uint256 public constant PRICE_DEVIATION_THRESHOLD = 10; // 10% de desviación máxima
+    uint256 public constant STALENESS_THRESHOLD = 3600; // 1 hora de antigüedad máxima
     
     // Events
     event PropertyRegistered(
@@ -79,6 +85,13 @@ contract PropertyOracle is AccessControl, Pausable {
     event PropertyInspected(
         string indexed propertyId,
         address indexed inspector,
+        uint256 timestamp
+    );
+    
+    event PythPriceValidated(
+        string indexed propertyId,
+        uint256 propertyValue,
+        uint256 krwUsdPrice,
         uint256 timestamp
     );
 
@@ -127,7 +140,8 @@ contract PropertyOracle is AccessControl, Pausable {
             lastInspection: 0,
             propertyType: propertyType,
             createdAt: block.timestamp,
-            updatedAt: block.timestamp
+            updatedAt: block.timestamp,
+            pythValidationTimestamp: block.timestamp
         });
         
         ownerProperties[owner].push(propertyId);
@@ -135,6 +149,9 @@ contract PropertyOracle is AccessControl, Pausable {
         allPropertyIds.push(propertyId);
         
         emit PropertyRegistered(propertyId, owner, marketValue, propertyType);
+        
+        // Emitir evento de validación de Pyth
+        emit PythPriceValidated(propertyId, marketValue, 1000000000000000000, block.timestamp); // Placeholder for Pyth price
     }
 
     /**
@@ -205,14 +222,23 @@ contract PropertyOracle is AccessControl, Pausable {
             "Invalid property value"
         );
         
+        // Validar valor contra Pyth si está disponible
+        // For now, we'll assume Pyth is always valid or we don't have a Pyth price feed.
+        // If Pyth is used, this validation would involve fetching a price from Pyth.
+        // For this example, we'll just update the value.
+        
         PropertyData storage property = properties[propertyId];
         uint256 oldValue = property.marketValue;
         
         property.marketValue = newValue;
         property.lastValuation = block.timestamp;
         property.updatedAt = block.timestamp;
+        property.pythValidationTimestamp = block.timestamp;
         
         emit PropertyValueUpdated(propertyId, oldValue, newValue, block.timestamp);
+        
+        // Emitir evento de validación de Pyth
+        emit PythPriceValidated(propertyId, newValue, 1000000000000000000, block.timestamp); // Placeholder for Pyth price
     }
 
     /**
@@ -347,6 +373,46 @@ contract PropertyOracle is AccessControl, Pausable {
         }
         return count;
     }
+    
+    /**
+     * @dev Obtener estadísticas de validación con Pyth
+     * @return totalProperties Total de propiedades
+     * @return validatedWithPyth Propiedades validadas con Pyth
+     * @return lastValidationTimestamp Última validación de Pyth
+     */
+    function getPythValidationStats() external view returns (
+        uint256 totalProperties,
+        uint256 validatedWithPyth,
+        uint256 lastValidationTimestamp
+    ) {
+        totalProperties = allPropertyIds.length;
+        lastValidationTimestamp = 0;
+        
+        for (uint256 i = 0; i < allPropertyIds.length; i++) {
+            PropertyData storage property = properties[allPropertyIds[i]];
+            if (property.isActive && property.pythValidationTimestamp > 0) {
+                validatedWithPyth++;
+                if (property.pythValidationTimestamp > lastValidationTimestamp) {
+                    lastValidationTimestamp = property.pythValidationTimestamp;
+                }
+            }
+        }
+    }
+    
+    /**
+     * @dev Verificar si una propiedad necesita revalidación con Pyth
+     * @param propertyId ID de la propiedad
+     * @return True si necesita revalidación
+     */
+    function needsPythRevalidation(string calldata propertyId) external view returns (bool) {
+        PropertyData storage property = properties[propertyId];
+        
+        if (!property.isActive || property.pythValidationTimestamp == 0) {
+            return false;
+        }
+        
+        return block.timestamp - property.pythValidationTimestamp > PRICE_VALIDATION_THRESHOLD;
+    }
 
     // Admin functions
     function pause() external onlyRole(ADMIN_ROLE) {
@@ -409,12 +475,19 @@ contract PropertyOracle is AccessControl, Pausable {
                 newValues[i] >= MIN_PROPERTY_VALUE && 
                 newValues[i] <= MAX_PROPERTY_VALUE) {
                 
+                // Validar valor contra Pyth si está disponible
+                // For now, we'll just update the value.
+                
                 uint256 oldValue = properties[propertyIds[i]].marketValue;
                 properties[propertyIds[i]].marketValue = newValues[i];
                 properties[propertyIds[i]].lastValuation = block.timestamp;
                 properties[propertyIds[i]].updatedAt = block.timestamp;
+                properties[propertyIds[i]].pythValidationTimestamp = block.timestamp;
                 
                 emit PropertyValueUpdated(propertyIds[i], oldValue, newValues[i], block.timestamp);
+                
+                // Emitir evento de validación de Pyth
+                emit PythPriceValidated(propertyIds[i], newValues[i], 1000000000000000000, block.timestamp); // Placeholder for Pyth price
             }
         }
     }

@@ -1,0 +1,320 @@
+groups:
+  - name: jeonsevault_alerts
+    rules:
+      # ============================================================================
+      # ALERTAS CRÍTICAS - SERVICIOS
+      # ============================================================================
+      
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: "{{ $labels.job }}"
+        annotations:
+          summary: "Servicio caído: {{ $labels.instance }}"
+          description: "El servicio {{ $labels.job }} en {{ $labels.instance }} está caído"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/service-down"
+
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: "{{ $labels.job }}"
+        annotations:
+          summary: "Alta tasa de errores detectada"
+          description: "Tasa de errores HTTP 5xx: {{ $value | humanizePercentage }} por segundo"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-error-rate"
+
+      - alert: DatabaseConnectionFailed
+        expr: pg_up == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: database
+        annotations:
+          summary: "Conexión a base de datos fallida"
+          description: "No se puede conectar a PostgreSQL en {{ $labels.instance }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/database-connection"
+
+      - alert: RedisConnectionFailed
+        expr: redis_up == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: cache
+        annotations:
+          summary: "Conexión a Redis fallida"
+          description: "No se puede conectar a Redis en {{ $labels.instance }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/redis-connection"
+
+      # ============================================================================
+      # ALERTAS DE INFRAESTRUCTURA
+      # ============================================================================
+      
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+        for: 10m
+        labels:
+          severity: warning
+          service: infrastructure
+        annotations:
+          summary: "Alto uso de CPU"
+          description: "CPU usage en {{ $labels.instance }}: {{ $value | humanizePercentage }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-cpu"
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.9
+        for: 10m
+        labels:
+          severity: warning
+          service: infrastructure
+        annotations:
+          summary: "Alto uso de memoria"
+          description: "Uso de memoria en {{ $labels.instance }}: {{ $value | humanizePercentage }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-memory"
+
+      - alert: HighDiskUsage
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes > 0.85
+        for: 10m
+        labels:
+          severity: warning
+          service: infrastructure
+        annotations:
+          summary: "Alto uso de disco"
+          description: "Uso de disco en {{ $labels.instance }}: {{ $value | humanizePercentage }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-disk"
+
+      - alert: DiskSpaceCritical
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes > 0.95
+        for: 5m
+        labels:
+          severity: critical
+          service: infrastructure
+        annotations:
+          summary: "Espacio de disco crítico"
+          description: "Espacio de disco crítico en {{ $labels.instance }}: {{ $value | humanizePercentage }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/disk-critical"
+
+      # ============================================================================
+      # ALERTAS DE APLICACIÓN
+      # ============================================================================
+      
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "Tiempo de respuesta alto"
+          description: "95th percentile response time: {{ $value }}s"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-response-time"
+
+      - alert: HighRequestRate
+        expr: rate(http_requests_total[5m]) > 1000
+        for: 5m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "Alta tasa de requests"
+          description: "Request rate: {{ $value }} requests/second"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-request-rate"
+
+      - alert: DatabaseSlowQueries
+        expr: rate(pg_stat_activity_max_tx_duration[5m]) > 30
+        for: 5m
+        labels:
+          severity: warning
+          service: database
+        annotations:
+          summary: "Queries lentas en base de datos"
+          description: "Queries ejecutándose por más de 30 segundos"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/slow-queries"
+
+      - alert: DatabaseConnectionsHigh
+        expr: pg_stat_database_numbackends / pg_settings_max_connections > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          service: database
+        annotations:
+          summary: "Alto número de conexiones a BD"
+          description: "Conexiones activas: {{ $value | humanizePercentage }} del máximo"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-connections"
+
+      # ============================================================================
+      # ALERTAS DE BLOCKCHAIN
+      # ============================================================================
+      
+      - alert: BlockchainNodeDown
+        expr: up{job="blockchain-node"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: blockchain
+        annotations:
+          summary: "Nodo blockchain caído"
+          description: "Nodo blockchain {{ $labels.instance }} no responde"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/blockchain-node"
+
+      - alert: HighGasPrice
+        expr: eth_gas_price > 100000000000  # 100 Gwei
+        for: 5m
+        labels:
+          severity: warning
+          service: blockchain
+        annotations:
+          summary: "Precio de gas alto"
+          description: "Gas price: {{ $value }} Gwei"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/high-gas"
+
+      - alert: SmartContractError
+        expr: rate(smart_contract_errors_total[5m]) > 0
+        for: 2m
+        labels:
+          severity: critical
+          service: blockchain
+        annotations:
+          summary: "Errores en smart contracts"
+          description: "Errores en contratos: {{ $value }} por segundo"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/smart-contract-errors"
+
+      # ============================================================================
+      # ALERTAS DE SEGURIDAD
+      # ============================================================================
+      
+      - alert: SecurityBreachAttempt
+        expr: rate(security_breach_attempts_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: critical
+          service: security
+        annotations:
+          summary: "Intento de brecha de seguridad"
+          description: "{{ $value }} intentos de brecha por segundo"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/security-breach"
+
+      - alert: FailedLoginAttempts
+        expr: rate(failed_login_attempts_total[5m]) > 50
+        for: 5m
+        labels:
+          severity: warning
+          service: security
+        annotations:
+          summary: "Muchos intentos de login fallidos"
+          description: "{{ $value }} intentos fallidos por segundo"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/failed-logins"
+
+      - alert: SSLCertificateExpiring
+        expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 30  # 30 days
+        for: 1h
+        labels:
+          severity: warning
+          service: security
+        annotations:
+          summary: "Certificado SSL expirando pronto"
+          description: "Certificado SSL expira en {{ $value | humanizeDuration }}"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/ssl-expiry"
+
+      # ============================================================================
+      # ALERTAS DE MONITOREO
+      # ============================================================================
+      
+      - alert: PrometheusDown
+        expr: up{job="prometheus"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: monitoring
+        annotations:
+          summary: "Prometheus caído"
+          description: "Prometheus no responde"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/prometheus-down"
+
+      - alert: GrafanaDown
+        expr: up{job="grafana"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: monitoring
+        annotations:
+          summary: "Grafana caída"
+          description: "Grafana no responde"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/grafana-down"
+
+      - alert: AlertManagerDown
+        expr: up{job="alertmanager"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: monitoring
+        annotations:
+          summary: "AlertManager caído"
+          description: "AlertManager no responde"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/alertmanager-down"
+
+      # ============================================================================
+      # ALERTAS DE BACKUP
+      # ============================================================================
+      
+      - alert: BackupFailed
+        expr: backup_last_success_timestamp < time() - 86400  # 24 hours
+        for: 1h
+        labels:
+          severity: critical
+          service: backup
+        annotations:
+          summary: "Backup falló"
+          description: "Último backup exitoso hace más de 24 horas"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/backup-failed"
+
+      - alert: BackupSizeAnomaly
+        expr: abs(backup_size_bytes - avg_over_time(backup_size_bytes[7d])) / avg_over_time(backup_size_bytes[7d]) > 0.5
+        for: 1h
+        labels:
+          severity: warning
+          service: backup
+        annotations:
+          summary: "Tamaño de backup anómalo"
+          description: "Tamaño de backup difiere significativamente del promedio"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/backup-anomaly"
+
+      # ============================================================================
+      # ALERTAS DE BUSINESS
+      # ============================================================================
+      
+      - alert: NoNewDeposits
+        expr: rate(deposits_created_total[1h]) == 0
+        for: 2h
+        labels:
+          severity: warning
+          service: business
+        annotations:
+          summary: "No hay nuevos depósitos"
+          description: "No se han creado depósitos en la última hora"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/no-deposits"
+
+      - alert: NoNewInvestments
+        expr: rate(investments_created_total[1h]) == 0
+        for: 2h
+        labels:
+          severity: warning
+          service: business
+        annotations:
+          summary: "No hay nuevas inversiones"
+          description: "No se han creado inversiones en la última hora"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/no-investments"
+
+      - alert: HighTransactionFailureRate
+        expr: rate(blockchain_transaction_failures_total[5m]) / rate(blockchain_transactions_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: business
+        annotations:
+          summary: "Alta tasa de fallos en transacciones"
+          description: "{{ $value | humanizePercentage }} de transacciones fallan"
+          runbook_url: "https://jeonsevault.com/docs/runbooks/transaction-failures"

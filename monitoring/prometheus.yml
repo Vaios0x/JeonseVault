@@ -1,0 +1,351 @@
+# ============================================================================
+# JeonseVault Prometheus Configuration
+# Configuración completa para monitoreo de la aplicación y infraestructura
+# ============================================================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'jeonsevault'
+
+# ============================================================================
+# RULE FILES
+# ============================================================================
+rule_files:
+  - "rules/*.yml"
+
+# ============================================================================
+# ALERTING
+# ============================================================================
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# ============================================================================
+# SCRAPE CONFIGURATIONS
+# ============================================================================
+scrape_configs:
+  # ============================================================================
+  # PROMETHEUS SELF MONITORING
+  # ============================================================================
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    metrics_path: /metrics
+    scrape_interval: 15s
+
+  # ============================================================================
+  # JEONSEVAULT APPLICATION
+  # ============================================================================
+  - job_name: 'jeonsevault-app'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    metrics_path: /api/metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'nodejs_(.+)'
+        target_label: metric_type
+        replacement: 'nodejs'
+
+  # ============================================================================
+  # NGINX MONITORING
+  # ============================================================================
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']
+    metrics_path: /nginx_status
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # POSTGRESQL MONITORING
+  # ============================================================================
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # REDIS MONITORING
+  # ============================================================================
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # DOCKER CONTAINERS
+  # ============================================================================
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['localhost:9323']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # NODE EXPORTER (SYSTEM METRICS)
+  # ============================================================================
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # CADVISOR (CONTAINER METRICS)
+  # ============================================================================
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # BLACKBOX EXPORTER (UPTIME MONITORING)
+  # ============================================================================
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - https://jeonsevault.com
+        - https://api.jeonsevault.com
+        - https://dashboard.jeonsevault.com
+    scrape_interval: 60s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  # ============================================================================
+  # ELASTICSEARCH MONITORING
+  # ============================================================================
+  - job_name: 'elasticsearch'
+    static_configs:
+      - targets: ['elasticsearch:9200']
+    metrics_path: /_prometheus/metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # GRAFANA MONITORING
+  # ============================================================================
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3000']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # ALERTMANAGER MONITORING
+  # ============================================================================
+  - job_name: 'alertmanager'
+    static_configs:
+      - targets: ['alertmanager:9093']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # VAULT MONITORING
+  # ============================================================================
+  - job_name: 'vault'
+    static_configs:
+      - targets: ['vault:8200']
+    metrics_path: /v1/sys/metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+
+  # ============================================================================
+  # CUSTOM METRICS ENDPOINTS
+  # ============================================================================
+  - job_name: 'jeonsevault-custom'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/health/metrics
+    scrape_interval: 60s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'jeonsevault_(.+)'
+        target_label: metric_type
+        replacement: 'custom'
+
+  # ============================================================================
+  # BLOCKCHAIN METRICS
+  # ============================================================================
+  - job_name: 'blockchain-metrics'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/blockchain/metrics
+    scrape_interval: 120s
+    scrape_timeout: 30s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'blockchain_(.+)'
+        target_label: metric_type
+        replacement: 'blockchain'
+
+  # ============================================================================
+  # SECURITY METRICS
+  # ============================================================================
+  - job_name: 'security-metrics'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/security/metrics
+    scrape_interval: 300s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'security_(.+)'
+        target_label: metric_type
+        replacement: 'security'
+
+  # ============================================================================
+  # PERFORMANCE METRICS
+  # ============================================================================
+  - job_name: 'performance-metrics'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/performance/metrics
+    scrape_interval: 60s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'performance_(.+)'
+        target_label: metric_type
+        replacement: 'performance'
+
+  # ============================================================================
+  # BUSINESS METRICS
+  # ============================================================================
+  - job_name: 'business-metrics'
+    static_configs:
+      - targets: ['jeonsevault:3000']
+    metrics_path: /api/business/metrics
+    scrape_interval: 300s
+    scrape_timeout: 10s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: '([^:]+)(?::\d+)?'
+        replacement: '${1}'
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'business_(.+)'
+        target_label: metric_type
+        replacement: 'business'

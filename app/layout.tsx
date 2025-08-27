@@ -1,8 +1,16 @@
+// Importar fix de BigInt al inicio
+// viem-bigint-fix import removed for simplified version
+
 import './globals.css'
+import { initializeBigIntPolyfill } from '@/lib/polyfill-loader'
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_KR } from 'next/font/google'
 import { headers } from 'next/headers'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 import ContextProvider from '@/context'
+import { Providers } from './providers'
+import { PolyfillProvider } from '@/components/providers/PolyfillProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
@@ -29,30 +37,37 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
   const headersObj = await headers()
   const cookies = headersObj.get('cookie')
+  const messages = await getMessages()
+  
   return (
     <html lang="ko" className={`${inter.variable} ${notoSansKR.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="theme-color" content="#0052CC" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="JeonseVault" />
       </head>
       <body className="font-korean antialiased bg-gray-50 min-h-screen flex flex-col">
-        <ContextProvider cookies={cookies}>
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </ContextProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ContextProvider cookies={cookies}>
+            <PolyfillProvider>
+              <Header />
+              <main className="flex-1">
+                {children}
+              </main>
+              <Footer />
+            </PolyfillProvider>
+          </ContextProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

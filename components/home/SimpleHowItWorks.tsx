@@ -2,57 +2,39 @@
 
 import { useState } from 'react'
 import { UserPlus, Home, Shield, TrendingUp, ArrowRight, Check } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export function SimpleHowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
+  const t = useTranslations('home.howItWorks')
 
   const steps = [
     {
       icon: UserPlus,
-      title: '1. KYC 인증',
-      description: '실명 인증과 은행 계좌 연결로 안전한 거래 환경 구축',
-      details: [
-        '한국 실명 인증 시스템 연동',
-        '은행 계좌 연결 및 검증',
-        '거래 한도 설정',
-        '컴플라이언스 체크'
-      ],
+      title: t('steps.kyc.title'),
+      description: t('steps.kyc.description'),
+      details: t.raw('steps.kyc.details'),
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: Home,
-      title: '2. 부동산 등록',
-      description: '부동산 소유권 확인 및 시장 가치 평가를 통한 검증',
-      details: [
-        '부동산 등기부 등본 확인',
-        '현재 시장 가치 평가',
-        '임대인 소유권 검증',
-        '부동산 상태 점검'
-      ],
+      title: t('steps.property.title'),
+      description: t('steps.property.description'),
+      details: t.raw('steps.property.details'),
       color: 'from-green-500 to-green-600'
     },
     {
       icon: Shield,
-      title: '3. 스마트 컨트랙트',
-      description: '보증금을 스마트 컨트랙트에 예치하여 안전하게 보관',
-      details: [
-        '자동 에스크로 시스템',
-        '계약 조건 코드화',
-        '투명한 자금 관리',
-        '분쟁 해결 메커니즘'
-      ],
+      title: t('steps.smartContract.title'),
+      description: t('steps.smartContract.description'),
+      details: t.raw('steps.smartContract.details'),
       color: 'from-purple-500 to-purple-600'
     },
     {
       icon: TrendingUp,
-      title: '4. 투자 및 수익',
-      description: '보증금의 일부를 활용한 안전한 투자로 추가 수익 창출',
-      details: [
-        '보증금 20% 투자 풀 활용',
-        '연 6% 안정적 수익률',
-        '분산 투자 포트폴리오',
-        '실시간 수익률 모니터링'
-      ],
+      title: t('steps.investment.title'),
+      description: t('steps.investment.description'),
+      details: t.raw('steps.investment.details'),
       color: 'from-orange-500 to-red-500'
     }
   ]
@@ -63,10 +45,10 @@ export function SimpleHowItWorks() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            어떻게 작동하나요?
+            {t('title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            JeonseVault는 4단계의 간단하고 안전한 프로세스로 전세 보증금을 보호하고 수익을 창출합니다
+            {t('subtitle')}
           </p>
         </div>
 
@@ -126,7 +108,7 @@ export function SimpleHowItWorks() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {steps[activeStep].details.map((detail, idx) => (
+            {steps[activeStep].details.map((detail: string, idx: number) => (
               <div key={idx} className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary-500 rounded-full flex-shrink-0" />
                 <span className="text-gray-700">{detail}</span>

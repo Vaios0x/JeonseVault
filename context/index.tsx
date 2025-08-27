@@ -1,46 +1,51 @@
 'use client'
 
+import { wagmiAdapter, projectId, kaia } from '@/config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createAppKit } from '@reown/appkit/react'
 import React, { type ReactNode } from 'react'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
-import { wagmiAdapter, projectId, wagmiConfig, kairos } from '@/config/wagmi'
+import { ToastProvider } from '@/components/ui/Toast'
 
 // Set up queryClient
 const queryClient = new QueryClient()
 
+if (!projectId) {
+  throw new Error('Project ID is not defined')
+}
+
 // Set up metadata
 const metadata = {
-	name: 'JeonseVault',
-	description: 'Powered by Reown',
-	url: 'https://jeonsevault.com',
-	icons: ['https://jeonsevault.com/icon-192x192.png']
+  name: 'JeonseVault',
+  description: 'Korean Jeonse Deposit Platform',
+  url: 'http://localhost:3001', // origin must match your domain & subdomain
+  icons: ['https://jeonsevault.com/logo.png']
 }
 
-if (!projectId) {
-	console.warn('NEXT_PUBLIC_PROJECT_ID no está definido. Usa un Project ID de Reown Dashboard.')
-}
-
-// Create the AppKit modal
-createAppKit({
-	adapters: [wagmiAdapter],
-	projectId,
-	networks: [kairos],
-	defaultNetwork: kairos,
-	metadata,
-	features: {
-		analytics: true
-	}
+// Create the modal
+const modal = createAppKit({
+  adapters: [wagmiAdapter],
+  projectId,
+  networks: [kaia],
+  defaultNetwork: kaia,
+  metadata: metadata,
+  features: {
+    analytics: true // Optional - defaults to your Cloud configuration
+  }
 })
 
 function ContextProvider({ children, cookies }: { children: ReactNode; cookies: string | null }) {
-	const initialState = cookieToInitialState(wagmiConfig as Config, cookies)
+  const initialState = cookieToInitialState(wagmiAdapter.wagmiConfig as Config, cookies)
 
-	return (
-		<WagmiProvider config={wagmiConfig as Config} initialState={initialState}>
-			<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-		</WagmiProvider>
-	)
+  return (
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config} initialState={initialState}>
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          {children}
+        </ToastProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
 }
 
 export default ContextProvider

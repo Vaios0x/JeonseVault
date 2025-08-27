@@ -1,0 +1,35 @@
+{
+  "network": "kairos",
+  "deployer": "0xe6bE36A435c3BecAd922ddD9Ede2Fc1DbB632BA1",
+  "timestamp": "2025-08-27T08:17:46.384Z",
+  "contracts": {
+    "PropertyOracle": {
+      "address": "0xF38701CCCE9190D1445c8cB3561104e811CB1468",
+      "constructorArgs": [],
+      "deploymentTx": "0x09d7ac436b2ead2c00bf0aa284d34de62a8f718ccdc19edbbef9bd548deb26d2",
+      "blockNumber": 0
+    },
+    "ComplianceModule": {
+      "address": "0xf18Fa2873244423cb2247C2b64B5992418001702",
+      "constructorArgs": [],
+      "deploymentTx": "0x2725b3e9a35911075dd29903c24500ef484ae2cb6eaa02feebea95c492b41d76",
+      "blockNumber": 0
+    },
+    "InvestmentPool": {
+      "address": "0xe9B843Bd787B433015e77F1Ad00eF0ad8dF056bB",
+      "constructorArgs": [],
+      "deploymentTx": "0x053c98914da8beeb1e34119870f57f98f16bab3118a014b5b3f7a712a184c077",
+      "blockNumber": 0
+    },
+    "JeonseVault": {
+      "address": "0x6287ac251C19bFDfc7AE8247D64B952727855Dae",
+      "constructorArgs": [
+        "0xF38701CCCE9190D1445c8cB3561104e811CB1468",
+        "0xf18Fa2873244423cb2247C2b64B5992418001702",
+        "0xe9B843Bd787B433015e77F1Ad00eF0ad8dF056bB"
+      ],
+      "deploymentTx": "0xc1768f82d617972fed236d861fe7fb208bf163a7d25f73bd8c1f76842aac4445",
+      "blockNumber": 0
+    }
+  }
+}
