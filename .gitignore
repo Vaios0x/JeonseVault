@@ -39,7 +39,6 @@ next-env.d.ts
 # Hardhat
 cache/
 artifacts/
-typechain-types/
 
 # Coverage reports
 coverage/
