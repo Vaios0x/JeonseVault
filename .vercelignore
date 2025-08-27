@@ -1,4 +1,4 @@
-# Archivos de desarrollo y testing
+# Archivos de testing (no necesarios en producción)
 test/
 tests/
 __tests__/
@@ -35,8 +35,8 @@ docker-compose.*.yml
 # Archivos de monitoreo
 monitoring/
 
-# Archivos de scripts de desarrollo (excluir todo excepto vercel-build.sh)
-scripts/*
+# Archivos de scripts de desarrollo
+scripts/
 !scripts/vercel-build.sh
 
 # Archivos de cache y logs
